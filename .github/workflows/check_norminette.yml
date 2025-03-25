@@ -1,0 +1,28 @@
+name: check_norminette
+run-name: ${{ github.actor }} is checking norminette
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+  workflow_dispatch:
+
+jobs:
+  checking_norminette:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Install norminette
+        run: |
+          sudo apt update
+          sudo apt install python3-setuptools
+          sudo apt install pipx
+          pipx install norminette
+          pipx ensurepath
+
+      - name: Check norminette
+        run: norminette
