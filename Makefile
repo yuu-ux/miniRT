@@ -22,7 +22,7 @@ OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT_DIR)/$(LIBFT)
+$(NAME): $(LIBFT_DIR)/$(LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(LIBFT_DIR)/$(LIBFT):
