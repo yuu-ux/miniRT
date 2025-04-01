@@ -13,6 +13,24 @@
 #include <libft.h>
 #include <mlx.h>
 
+#define KEY_ESC 65307
+
+int	key_event(int keycode, void *param)
+{
+	(void)param;
+	if (keycode == KEY_ESC)
+	{
+		exit(0);
+	}
+	return (0);
+}
+
+int	close_window(void *param)
+{
+	(void)param;
+	exit(0);
+}
+
 int main(int argc, char **argv)
 {
 	// t_data data;
@@ -30,6 +48,8 @@ int main(int argc, char **argv)
 	// if (parse_rt_file(argv[1], &data.scene) != 0)
 	// 	return (1);
 	// render_scene(&data);
+	mlx_hook(mlx_win, 2, 1L << 0, key_event, NULL);
+	mlx_hook(mlx_win, 17, 1L << 17, close_window, NULL);
 	mlx_loop(mlx);
 	return (0);
 }
