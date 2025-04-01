@@ -13,21 +13,28 @@
 NAME = miniRT
 LIBFT_DIR = ./libft
 LIBFT = libft.a
+MLX_DIR = minilibx-linux
 OBJ_DIR = ./obj
 SRC_DIR = ./src
 CC	= cc
-CFLAGS = -g -Wall -Wextra -Werror -I./include -I$(LIBFT_DIR)/include
+CFLAGS = -g -Wall -Wextra -Werror -I./include -I$(LIBFT_DIR)/include -I$(MLX_DIR)
+LFLAGS = -g -Wall -Wextra -Werror -L$(MLX_DIR) -lmlx  -L$(LIBFT_DIR) -lft -lXext -lX11 -lm -lbsd
+MLX_NAME = libmlx_Linux.a
+MLX = $(MLX_DIR)/$(MLX_NAME)
 SRCS = $(SRC_DIR)/main.c
 OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
 
 all: $(NAME)
 
-$(NAME): $(LIBFT_DIR)/$(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
+$(NAME): $(LIBFT_DIR)/$(LIBFT) $(MLX) $(OBJS)
+	$(CC) $^ $(LFLAGS) -o $@
 
 $(LIBFT_DIR)/$(LIBFT):
 	git submodule update --init --remote
 	make -C $(LIBFT_DIR)
+
+$(MLX):
+	make -C $(MLX_DIR)
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
