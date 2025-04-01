@@ -17,7 +17,7 @@ OBJ_DIR = ./obj
 SRC_DIR = ./src
 CC	= cc
 CFLAGS = -g -Wall -Wextra -Werror -I./include -I$(LIBFT_DIR)/include
-SRCS = $(SRC_DIR)/main.c \
+SRCS = $(SRC_DIR)/main.c
 OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
 
 all: $(NAME)
@@ -26,6 +26,7 @@ $(NAME): $(OBJS) $(LIBFT_DIR)/$(LIBFT)
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(LIBFT_DIR)/$(LIBFT):
+	git submodule update --init --remote
 	make -C $(LIBFT_DIR)
 
 $(OBJ_DIR):
