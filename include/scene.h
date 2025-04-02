@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:06:52 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/04/01 18:07:15 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/04/02 20:08:20 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ typedef struct s_color {
 }			t_color;
 
 typedef struct s_camera {
-	t_vec3	position;
-	t_vec3	orientation;
+	t_vec	position;
+	t_vec	orientation;
 	double	fov;
 }			t_camera;
 // 視線の方向（正規化）
