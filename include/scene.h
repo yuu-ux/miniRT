@@ -6,12 +6,14 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:06:52 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/04/02 20:08:20 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/04/02 22:35:25 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCENE_H
 # define SCENE_H
+# include "../libft/include/libft.h"
+# include <math.h>
 
 typedef struct s_vec {
 	double	x;
@@ -71,5 +73,13 @@ typedef struct s_scene
 	t_light		light;
 	t_list		*objects;
 }				t_scene;
+
+t_vec		add(t_vec a, t_vec b);
+t_vec		subtract(t_vec a, t_vec b);
+t_vec		scale(t_vec a, double s);
+t_vec		normalize(t_vec v);
+double		length(t_vec v);
+double		dot_product(t_vec v1, t_vec v2);
+t_vec		cross_product(t_vec v1, t_vec v2);
 
 #endif
