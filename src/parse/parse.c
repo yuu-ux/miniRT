@@ -6,58 +6,65 @@
 /*   By: yehara <yehara@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 21:21:03 by yehara            #+#    #+#             */
-/*   Updated: 2025/04/01 21:21:11 by yehara           ###   ########.fr       */
+/*   Updated: 2025/04/02 21:31:37 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <scene.h>
+#include <parse.h>
+
+void	parse_rt_line(char *line, t_scene *scene);
 
 int	parse_rt_file(const char *filename, t_scene *scene)
 {
 	int		fd;
 	char	*line;
 
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
+	fd = ft_xopen(filename, O_RDONLY);
+	while ((line = get_next_line(fd)) != NULL)
 	{
-		perror("Error\nFailed to open .rt file");
-		return (1);
+		line = ft_chomp(line);
+		if (ft_strlen(line) > 0)
+			parse_rt_line(line, scene);
+		free(line);
 	}
-
-	// while ((line = get_next_line(fd)) != NULL)
-	// {
-	// 	if (line[0] == '\n' || line[0] == '#')
-	// 	{
-	// 		free(line);
-	// 		continue;
-	// 	}
-	// 	if (parse_rt_line(line, scene) != 0)
-	// 	{
-	// 		free(line);
-	// 		close(fd);
-	// 		return (1);
-	// 	}
-	// 	free(line);
-	// }
-	// close(fd);
-	return (0);
+	ft_xclose(fd);
+	return (EXIT_SUCCESS);
 }
 
-int parse_rt_line(char *line, t_scene *scene)
+void	parse_rt_line(char *line, t_scene *scene)
 {
-	// if (ft_strncmp(line, "A ", 2) == 0)
-	// 	return parse_ambient(line + 2, &scene->ambient);
-	// else if (ft_strncmp(line, "C ", 2) == 0)
-	// 	return parse_camera(line + 2, &scene->camera);
-	// else if (ft_strncmp(line, "L ", 2) == 0)
-	// 	return parse_light(line + 2, &scene->lights);
-	// else if (ft_strncmp(line, "sp", 2) == 0)
-	// 	return parse_sphere(line + 2, &scene->objects);
-	// else if (ft_strncmp(line, "pl", 2) == 0)
-	// 	return parse_plane(line + 2, &scene->objects);
-	// else if (ft_strncmp(line, "cy", 2) == 0)
-	// 	return parse_cylinder(line + 2, &scene->objects);
+	char **elements;
+
+	elements = ft_split(line, ' ');
+	if (ft_strncmp(elements[0], "A", 1) == 0)
+		parse_ambient(elements + 1, &scene->ambient);
+	// else if (ft_strncmp(elements[0], "C", 1) == 0)
+	// 	parse_camera(elements + 1, &scene->camera);
+	// else if (ft_strncmp(elements[0], "L", 1) == 0)
+	// 	parse_light(elements + 1, &scene->lights);
+	// else if (ft_strncmp(elements[0], "sp", 2) == 0)
+	// 	parse_sphere(elements[0] + 2, &scene->objects);
+	// else if (ft_strncmp(elements[0], "pl", 2) == 0)
+	// 	parse_plane(elements[0] + 2, &scene->objects);
+	// else if (ft_strncmp(elements[0], "cy", 2) == 0)
+	// 	parse_cylinder(elements[0] + 2, &scene->objects);
 	// else
 	// {
 	// 	ft_putstr_fd("Error\nUnknown identifier\n", 2);
-	// 	return (1);
+	// 	exit(EXIT_FAILURE);
 	// }
 }
+
+int	main(void)
+{
+	t_scene *scene;
+
+	scene = ft_xmalloc(sizeof(t_scene));
+	parse_rt_file("test.rt", scene);
+	printf("%f\n", scene->ambient.brightness);
+	printf("%f\n", scene->ambient.color.r);
+	printf("%f\n", scene->ambient.color.g);
+	printf("%f\n", scene->ambient.color.b);
+}
+
