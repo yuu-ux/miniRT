@@ -6,7 +6,7 @@
 #    By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 19:41:00 by yehara            #+#    #+#              #
-#    Updated: 2025/04/02 22:37:16 by ssoeno           ###   ########.fr        #
+#    Updated: 2025/04/02 22:52:07 by ssoeno           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
 all: $(NAME)
 
 $(NAME): $(LIBFT_DIR)/$(LIBFT) $(MLX) $(OBJS)
-	$(CC) $^ $(LFLAGS) -o $@ -lm
+	$(CC) $^ $(LFLAGS) -o $@
 
 $(LIBFT_DIR)/$(LIBFT):
 	git submodule update --init --remote
