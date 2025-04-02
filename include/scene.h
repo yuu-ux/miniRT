@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:06:52 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/04/01 17:15:31 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/04/01 18:07:15 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_scene
 {
 	t_ambient	ambient;
 	t_camera	camera;
-	t_list		*lights;
+	t_light		light;
 	t_list		*objects;
 }				t_scene;
 
