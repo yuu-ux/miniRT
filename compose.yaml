@@ -1,0 +1,10 @@
+services:
+  minirt:
+    build: .
+    volumes:
+      - .:/root/minirt
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    tty: true
+    stdin_open: true
+    environment:
+      DISPLAY: docker.for.mac.host.internal:0
