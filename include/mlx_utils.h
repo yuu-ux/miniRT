@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:02:02 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/04/02 18:35:52 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/04/02 20:29:17 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,19 @@
 # define MLX_UTILS_H
 
 # include "mlx.h"
+# include "libft.h"
+# include "scene.h"
+
+typedef struct s_img
+{
+	void	*img_ptr;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+}			t_img;
 
 typedef struct s_mlx
 {
@@ -21,10 +34,7 @@ typedef struct s_mlx
 	void	*window;
 	int		width;
 	int		height;
-	void	*img;
-	char	*addr;
-	int		line_length;
-	int		endian;
+	t_img	img;
 	t_scene	scene;
 }			t_mlx;
 
