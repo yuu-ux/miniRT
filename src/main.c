@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:01:34 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/04/02 18:44:31 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/04/02 18:54:44 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,15 @@ int main(int argc, char **argv)
 		return (ft_printf("Usage: ./miniRT scene.rt\n"));
 
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	mlx_win = mlx_new_window(mlx, 800, 600, "Hello world!");
+
+	for (int y = 250; y < 350; y++)
+	{
+		for (int x = 350; x < 450; x++)
+		{
+			mlx_pixel_put(mlx, mlx_win, x, y, 0x00FF0000);  // 赤色 (R=255, G=0, B=0)
+		}
+	}
 	// scene初期化
 	// ft_bzero(&data, sizeof(t_scene));
 	// if (parse_rt_file(argv[1], &scebe.scene) != 0)
