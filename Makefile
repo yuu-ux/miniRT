@@ -6,7 +6,7 @@
 #    By: yehara <yehara@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 19:41:00 by yehara            #+#    #+#              #
-#    Updated: 2025/04/02 21:13:18 by yehara           ###   ########.fr        #
+#    Updated: 2025/04/03 19:27:05 by yehara           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = miniRT
 
 # parse
 PARSE_SRCS = parse.c \
-			 parse_ambient.c
+			 parse_ambient.c \
+			 parse_util.c
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # srcs
