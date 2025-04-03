@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:06:52 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/04/02 22:35:25 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/04/03 21:12:21 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,14 @@ typedef struct s_color {
 
 typedef struct s_camera {
 	t_vec	position;
-	t_vec	orientation;
+	t_vec	forward;　 // orientation
+	t_vec	up;
+	t_vec	right;
 	double	fov;
 }			t_camera;
-// 視線の方向（正規化）
-// fov 視野角（[0〜180]）
+// forward: Normalized vector
+// fov: field of view [0〜180]）
+// right, upはカメラを動かすならあったほうがいいが、マンダトリーでは不要かも
 
 typedef struct s_light {
 	t_vec	position;
@@ -73,6 +76,14 @@ typedef struct s_scene
 	t_light		light;
 	t_list		*objects;
 }				t_scene;
+
+typedef struct s_ray
+{
+	t_vec	origin;
+	t_vec	direction;
+}				t_ray;
+// origin: camera position
+// direction: normalized vector from camera to pixel
 
 t_vec		add(t_vec a, t_vec b);
 t_vec		subtract(t_vec a, t_vec b);
