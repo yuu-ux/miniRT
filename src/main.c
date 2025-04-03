@@ -18,6 +18,17 @@
 #define WIDTH 800
 #define HEIGHT 600
 
+/**
+ * @brief Handles key events.
+ *
+ * Checks if the received key code is the escape key. If so, it exits the program;
+ * otherwise, it ignores the event.
+ *
+ * @param keycode The code corresponding to the key pressed.
+ * @param param Unused parameter.
+ *
+ * @return Always returns 0.
+ */
 int	key_event(int keycode, void *param)
 {
 	(void)param;
@@ -28,12 +39,30 @@ int	key_event(int keycode, void *param)
 	return (0);
 }
 
+/**
+ * @brief Terminates the application when the window is closed.
+ *
+ * This function serves as a callback for window close events. It immediately
+ * terminates the program by calling exit(0). The provided parameter is ignored.
+ */
 int	close_window(void *param)
 {
 	(void)param;
 	exit(0);
 }
 
+/**
+ * @brief Draws a pixel on an image at specified coordinates.
+ *
+ * Computes the address within the image buffer for the pixel at (x, y)
+ * and assigns it the given color value. No boundary checks are performed,
+ * so ensure that (x, y) is within the valid dimensions of the image.
+ *
+ * @param img Pointer to the image structure containing pixel data and layout.
+ * @param x Horizontal coordinate of the pixel.
+ * @param y Vertical coordinate of the pixel.
+ * @param color Color value to set at the specified pixel.
+ */
 void	put_pixel(t_img *img, int x, int y, int color)
 {
 	char	*dst;
@@ -42,6 +71,20 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+/**
+ * @brief Entry point for the miniRT graphics application.
+ *
+ * Initializes the MiniLibX context, creates a window and an image buffer, and draws a red rectangle (RGB: 255, 0, 0)
+ * onto the image. It then displays the image in the window, sets up event hooks for keyboard input and window
+ * closing, and enters the main event loop. Expects a single command-line argument specifying the scene file.
+ *
+ * If the argument count is not equal to 2, the function prints a usage message ("Usage: ./miniRT scene.rt") and exits.
+ *
+ * @param argc Number of command-line arguments.
+ * @param argv Array of command-line argument strings, where argv[1] should be the path to the scene file.
+ *
+ * @return Returns 0 upon normal termination.
+ */
 int main(int argc, char **argv)
 {
 	t_mlx	mlx;
