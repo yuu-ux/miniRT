@@ -14,10 +14,11 @@
 # define PARSE_H
 
 #include <scene.h>
+int	parse_rt_file(const char *filename, t_scene *scene);
 int	parse_ambient(char **elements, t_ambient *ambient);
 
 // util
 int	count_array(char **array);
-int	parse_color(char **colors, t_color *color);
+int	parse_color(char *elements, t_color *color);
 #endif
 

@@ -22,18 +22,21 @@ int	count_array(char **array)
 	return (count);
 }
 
-int	parse_color(char **colors, t_color *color)
+int	parse_color(char *elements, t_color *color)
 {
-	double red;
-	double green;
-	double blue;
+	double	red;
+	double	green;
+	double	blue;
+	char	**colors;
 
+	colors = ft_split(elements, ',');
+	if (count_array(colors) != 3)
+		return (EXIT_FAILURE);
 	red = ft_atof(colors[0]);
 	green = ft_atof(colors[1]);
 	blue = ft_atof(colors[2]);
-	if ((red < 0 && red > 255)
-		|| (green < 0 && green > 255)
-		|| (blue < 0 && blue > 255))
+	if ((red < 0 || red > 255) || (green < 0 || green > 255) || (blue < 0
+			|| blue > 255))
 		return (EXIT_FAILURE);
 	color->r = red;
 	color->g = green;
