@@ -10,35 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <scene.h>
 #include <parse.h>
+#include <scene.h>
 
-void	parse_rt_line(char *line, t_scene *scene);
-
-int	parse_rt_file(const char *filename, t_scene *scene)
+static int	parse_rt_line(char *line, t_scene *scene)
 {
-	int		fd;
-	char	*line;
-
-	fd = ft_xopen(filename, O_RDONLY);
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		line = ft_chomp(line);
-		if (ft_strlen(line) > 0)
-			parse_rt_line(line, scene);
-		free(line);
-	}
-	ft_xclose(fd);
-	return (EXIT_SUCCESS);
-}
-
-void	parse_rt_line(char *line, t_scene *scene)
-{
-	char **elements;
+	char	**elements;
 
 	elements = ft_split(line, ' ');
 	if (ft_strncmp(elements[0], "A", 1) == 0)
-		parse_ambient(elements + 1, &scene->ambient);
+		return (parse_ambient(elements + 1, &scene->ambient));
 	// else if (ft_strncmp(elements[0], "C", 1) == 0)
 	// 	parse_camera(elements + 1, &scene->camera);
 	// else if (ft_strncmp(elements[0], "L", 1) == 0)
@@ -54,11 +35,32 @@ void	parse_rt_line(char *line, t_scene *scene)
 	// 	ft_putstr_fd("Error\nUnknown identifier\n", 2);
 	// 	exit(EXIT_FAILURE);
 	// }
+	return (EXIT_SUCCESS);
+}
+
+int	parse_rt_file(const char *filename, t_scene *scene)
+{
+	int		fd;
+	char	*line;
+
+	fd = ft_xopen(filename, O_RDONLY);
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		line = ft_chomp(line);
+		if (ft_strlen(line) <= 0 || parse_rt_line(line, scene) == EXIT_FAILURE)
+		{
+			// all_free();
+			exit(EXIT_FAILURE);
+		}
+		free(line);
+	}
+	ft_xclose(fd);
+	return (EXIT_SUCCESS);
 }
 
 int	main(void)
 {
-	t_scene *scene;
+	t_scene	*scene;
 
 	scene = ft_xmalloc(sizeof(t_scene));
 	parse_rt_file("test.rt", scene);
@@ -67,4 +69,3 @@ int	main(void)
 	printf("%f\n", scene->ambient.color.g);
 	printf("%f\n", scene->ambient.color.b);
 }
-
