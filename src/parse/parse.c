@@ -50,22 +50,10 @@ int	parse_rt_file(const char *filename, t_scene *scene)
 		if (ft_strlen(line) <= 0 || parse_rt_line(line, scene) == EXIT_FAILURE)
 		{
 			// all_free();
-			exit(EXIT_FAILURE);
+			return (EXIT_FAILURE);
 		}
 		free(line);
 	}
 	ft_xclose(fd);
 	return (EXIT_SUCCESS);
-}
-
-int	main(void)
-{
-	t_scene	*scene;
-
-	scene = ft_xmalloc(sizeof(t_scene));
-	parse_rt_file("test.rt", scene);
-	printf("%f\n", scene->ambient.brightness);
-	printf("%f\n", scene->ambient.color.r);
-	printf("%f\n", scene->ambient.color.g);
-	printf("%f\n", scene->ambient.color.b);
 }
