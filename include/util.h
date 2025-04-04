@@ -6,9 +6,10 @@
 /*   By: yehara <yehara@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 21:18:27 by yehara            #+#    #+#             */
-/*   Updated: 2025/04/04 21:18:35 by yehara           ###   ########.fr       */
+/*   Updated: 2025/04/04 23:00:29 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-void	error_exit(char *message);
+int	error_exit(char *message);
+int	free_double_array(char **array);
