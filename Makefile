@@ -6,7 +6,7 @@
 #    By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 19:41:00 by yehara            #+#    #+#              #
-#    Updated: 2025/04/02 22:52:07 by ssoeno           ###   ########.fr        #
+#    Updated: 2025/04/04 21:19:39 by yehara           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,13 @@ NAME = miniRT
 PARSE_SRCS = parse.c \
 			 parse_ambient.c \
 			 parse_util.c
+UTIL_SRCS = error.c
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # srcs
 SRCS = $(SRC_DIR)/main.c \
-	   $(addprefix $(SRC_DIR)/parse/, $(PARSE_SRCS))
+	   $(addprefix $(SRC_DIR)/parse/, $(PARSE_SRCS)) \
+	   $(addprefix $(SRC_DIR)/util/, $(UTIL_SRCS))
 
 # libft
 LIBFT_DIR = ./libft
