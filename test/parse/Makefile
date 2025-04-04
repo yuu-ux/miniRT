@@ -17,7 +17,8 @@ SRCDIR  = ../../src/parse
 SRCS = main.c \
 	$(SRCDIR)/parse_ambient.c \
 	$(SRCDIR)/parse_util.c \
-	$(SRCDIR)/parse.c
+	$(SRCDIR)/parse.c \
+	../../src/util/error.c
 OBJ = $(notdir $(SRCS:.c=.o))
 
 all: $(NAME)
