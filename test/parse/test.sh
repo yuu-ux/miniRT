@@ -12,7 +12,7 @@ declare -A test_cases=(
 
 for file in "${!test_cases[@]}"; do
     expected_status="${test_cases[$file]}"
-    ./parse "$file"
+    ./parse "$file" 2> /dev/null
     if [ "$?" -eq "$expected_status" ]; then
         echo -e "\e[32mOK\e[0m"
     else
