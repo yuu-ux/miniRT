@@ -1,11 +1,12 @@
 #!/bin/bash
 
 declare -A test_cases=(
-    ["rt_file/error_brightness_big.rt"]=1
-    ["rt_file/error_brightness_small.rt"]=1
-    ["rt_file/error_color_big.rt"]=1
-    ["rt_file/error_color_small.rt"]=1
-    ["rt_file/error_duplicate.rt"]=1
+    ["rt_file/error_A_brightness_big.rt"]=1
+    ["rt_file/error_A_brightness_small.rt"]=1
+    ["rt_file/error_A_color_big.rt"]=1
+    ["rt_file/error_A_color_small.rt"]=1
+    ["rt_file/error_A_duplicate.rt"]=1
+    ["rt_file/error_A_char.rt"]=1
     ["rt_file/success.rt"]=0
 )
 
