@@ -14,7 +14,7 @@ NAME = parse
 CC	= cc
 CFLAGS = -g -Wall -Wextra -Werror -I../../include -I../../libft/include
 SRCDIR  = ../../src/parse
-SRCS = test.c \
+SRCS = main.c \
 	$(SRCDIR)/parse_ambient.c \
 	$(SRCDIR)/parse_util.c \
 	$(SRCDIR)/parse.c
