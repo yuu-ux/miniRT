@@ -6,7 +6,7 @@
 /*   By: yehara <yehara@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 21:21:03 by yehara            #+#    #+#             */
-/*   Updated: 2025/04/04 21:20:22 by yehara           ###   ########.fr       */
+/*   Updated: 2025/04/04 22:58:16 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@
 static int	parse_rt_line(char *line, t_scene *scene)
 {
 	char	**elements;
+	int	status;
 
-	elements = ft_split(line, ' ');
+	status = 0;
+	elements = ft_xsplit(line, ' ');
 	if (ft_strncmp(elements[0], "A", 1) == 0)
-		return (parse_ambient(elements + 1, &scene->ambient));
+		status = parse_ambient(elements + 1, &scene->ambient);
 	// else if (ft_strncmp(elements[0], "C", 1) == 0)
 	// 	parse_camera(elements + 1, &scene->camera);
 	// else if (ft_strncmp(elements[0], "L", 1) == 0)
@@ -36,7 +38,8 @@ static int	parse_rt_line(char *line, t_scene *scene)
 	// 	ft_putstr_fd("Error\nUnknown identifier\n", 2);
 	// 	exit(EXIT_FAILURE);
 	// }
-	return (EXIT_SUCCESS);
+	free_double_array(elements);
+	return (status);
 }
 
 int	parse_rt_file(const char *filename, t_scene *scene)
