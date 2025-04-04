@@ -6,12 +6,13 @@
 /*   By: yehara <yehara@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 21:21:03 by yehara            #+#    #+#             */
-/*   Updated: 2025/04/02 21:31:37 by yehara           ###   ########.fr       */
+/*   Updated: 2025/04/04 21:20:22 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parse.h>
 #include <scene.h>
+#include <util.h>
 
 static int	parse_rt_line(char *line, t_scene *scene)
 {
@@ -49,7 +50,7 @@ int	parse_rt_file(const char *filename, t_scene *scene)
 		line = ft_chomp(line);
 		if (ft_strlen(line) <= 0 || parse_rt_line(line, scene) == EXIT_FAILURE)
 		{
-			// all_free();
+			error_exit("map error");
 			return (EXIT_FAILURE);
 		}
 		free(line);
