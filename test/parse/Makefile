@@ -19,13 +19,14 @@ SRCS = main.c \
 	$(SRCDIR)/parse_util.c \
 	$(SRCDIR)/parse.c \
 	$(SRCDIR)/parse_camera.c \
-	../../src/util/error.c
+	../../src/util/error.c \
+	../../src/raytracing/vector_utils.c
 OBJ = $(notdir $(SRCS:.c=.o))
 
 all: $(NAME)
 
 $(NAME): $(SRCS)
-	$(CC) $(CFLAGS) -o $@ $^ ../../libft/libft.a
+	$(CC) $(CFLAGS) -o $@ $^ ../../libft/libft.a -lm
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
