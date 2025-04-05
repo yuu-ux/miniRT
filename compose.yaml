@@ -8,3 +8,4 @@ services:
     stdin_open: true
     environment:
       DISPLAY: docker.for.mac.host.internal:0
+    command: sh -c "ln -sf /root/minirt/.bashrc /root/.bashrc && bash"

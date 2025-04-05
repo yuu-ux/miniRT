@@ -15,14 +15,22 @@ NAME = miniRT
 # parse
 PARSE_SRCS = parse.c \
 			 parse_ambient.c \
-			 parse_util.c
+			 parse_util.c \
+			 parse_camera.c
+
+# raytracing
+RAYTRACING_SRCS = vector_utils.c
+# util
 UTIL_SRCS = error.c
+
+
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # srcs
 SRCS = $(SRC_DIR)/main.c \
 	   $(addprefix $(SRC_DIR)/parse/, $(PARSE_SRCS)) \
-	   $(addprefix $(SRC_DIR)/util/, $(UTIL_SRCS))
+	   $(addprefix $(SRC_DIR)/util/, $(UTIL_SRCS)) \
+	   $(addprefix $(SRC_DIR)/raytracing/, $(RAYTRACING_SRCS))
 
 # libft
 LIBFT_DIR = ./libft

@@ -6,11 +6,19 @@ void	init_data(t_scene *scene)
 	scene->ambient.color.r = -1;
 	scene->ambient.color.g = -1;
 	scene->ambient.color.b = -1;
+    scene->camera.position.x = -1;
+    scene->camera.position.y = -1;
+    scene->camera.position.z = -1;
+    scene->camera.orientation.x = -1;
+    scene->camera.orientation.y = -1;
+    scene->camera.orientation.z = -1;
+    scene->camera.fov = -1;
 }
 
 int	main(int argc, char **argv)
 {
 	t_scene	*scene;
+    int status;
 
 	if (argc != 2)
 	{
@@ -19,6 +27,20 @@ int	main(int argc, char **argv)
 	}
 	scene = ft_xmalloc(sizeof(t_scene));
 	init_data(scene);
-	return (parse_rt_file(argv[1], scene));
+    status  = parse_rt_file(argv[1], scene);
+    if (status == EXIT_SUCCESS)
+    {
+        printf("brighteness: %f\n", scene->ambient.brightness);
+        printf("red: %f\n", scene->ambient.color.r);
+        printf("green: %f\n", scene->ambient.color.g);
+        printf("blue: %f\n", scene->ambient.color.b);
+        printf("x: %f\n", scene->camera.position.x);
+        printf("y: %f\n", scene->camera.position.y);
+        printf("z: %f\n", scene->camera.position.z);
+        printf("x: %f\n", scene->camera.orientation.x);
+        printf("y: %f\n", scene->camera.orientation.y);
+        printf("z: %f\n", scene->camera.orientation.z);
+        printf("fov: %f\n", scene->camera.fov);
+    }
+	return (status);
 }
-

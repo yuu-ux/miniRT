@@ -17,14 +17,14 @@
 static int	parse_rt_line(char *line, t_scene *scene)
 {
 	char	**elements;
-	int	status;
+	int		status;
 
 	status = 0;
 	elements = ft_xsplit(line, ' ');
 	if (ft_strncmp(elements[0], "A", 1) == 0)
 		status = parse_ambient(elements + 1, &scene->ambient);
-	// else if (ft_strncmp(elements[0], "C", 1) == 0)
-	// 	parse_camera(elements + 1, &scene->camera);
+	else if (ft_strncmp(elements[0], "C", 1) == 0)
+		status = parse_camera(elements + 1, &scene->camera);
 	// else if (ft_strncmp(elements[0], "L", 1) == 0)
 	// 	parse_light(elements + 1, &scene->lights);
 	// else if (ft_strncmp(elements[0], "sp", 2) == 0)
@@ -53,7 +53,7 @@ int	parse_rt_file(const char *filename, t_scene *scene)
 		line = ft_chomp(line);
 		if (ft_strlen(line) <= 0 || parse_rt_line(line, scene) == EXIT_FAILURE)
 		{
-			error_exit("map error");
+			error_exit("input error");
 			return (EXIT_FAILURE);
 		}
 		free(line);
