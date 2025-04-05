@@ -22,5 +22,6 @@ int	parse_camera(char **elements, t_camera *camera);
 int	count_array(char **array);
 int	parse_color(char *elements, t_color *color);
 int parse_vector(char *elements, t_vec *vector);
+int validate_vector(t_vec vector);
 #endif
 

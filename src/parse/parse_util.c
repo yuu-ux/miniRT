@@ -46,6 +46,19 @@ int	parse_color(char *elements, t_color *color)
 	return (EXIT_SUCCESS);
 }
 
+int validate_vector(t_vec vector)
+{
+	double	magnitude;
+
+	magnitude = length(vector);
+    // 1e-6 is 0.000001
+    // 0.999999 〜 1.000001 の範囲内に存在するかどうか
+    // ベクトルが正規化できるかのチェック
+	if (magnitude < 1 - 1e-6 || magnitude > 1 + 1e-6)
+        return (EXIT_FAILURE);
+    return (EXIT_SUCCESS);
+}
+
 int parse_vector(char *elements, t_vec *vector)
 {
     double  x;
@@ -59,13 +72,9 @@ int parse_vector(char *elements, t_vec *vector)
     x = ft_atof(vectors[0]);
     y = ft_atof(vectors[1]);
     z = ft_atof(vectors[2]);
-    if ((x < -1 || x > 1)
-        || (y < -1 || y > 1)
-        || (z < -1 || z > 1))
-        return (free_double_array(vectors));
     vector->x = x;
-    vector->y = x;
-    vector->z = x;
+    vector->y = y;
+    vector->z = z;
     free_double_array(vectors);
     return (EXIT_SUCCESS);
 }
