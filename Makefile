@@ -6,7 +6,7 @@
 #    By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 19:41:00 by yehara            #+#    #+#              #
-#    Updated: 2025/04/04 21:19:39 by yehara           ###   ########.fr        #
+#    Updated: 2025/04/05 18:49:54 by yehara           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ NAME = miniRT
 PARSE_SRCS = parse.c \
 			 parse_ambient.c \
 			 parse_util.c \
-			 parse_camera.c
+			 parse_camera.c \
+			 parse_light.c
 
 # raytracing
 RAYTRACING_SRCS = vector_utils.c
