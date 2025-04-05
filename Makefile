@@ -15,7 +15,8 @@ NAME = miniRT
 # parse
 PARSE_SRCS = parse.c \
 			 parse_ambient.c \
-			 parse_util.c
+			 parse_util.c \
+			 parse_camera.c
 UTIL_SRCS = error.c
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

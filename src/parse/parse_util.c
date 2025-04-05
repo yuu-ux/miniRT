@@ -46,3 +46,26 @@ int	parse_color(char *elements, t_color *color)
 	return (EXIT_SUCCESS);
 }
 
+int parse_vector(char *elements, t_vec *vector)
+{
+    double  x;
+    double  y;
+    double  z;
+    char **vectors;
+
+    vectors = ft_xsplit(elements, ',');
+    if (count_array(vectors) != 3)
+        return (free_double_array(vectors));
+    x = ft_atof(vectors[0]);
+    y = ft_atof(vectors[1]);
+    z = ft_atof(vectors[2]);
+    if ((x < -1 || x > 1)
+        || (y < -1 || y > 1)
+        || (z < -1 || z > 1))
+        return (free_double_array(vectors));
+    vector->x = x;
+    vector->y = x;
+    vector->z = x;
+    free_double_array(vectors);
+    return (EXIT_SUCCESS);
+}

@@ -23,8 +23,8 @@ static int	parse_rt_line(char *line, t_scene *scene)
 	elements = ft_xsplit(line, ' ');
 	if (ft_strncmp(elements[0], "A", 1) == 0)
 		status = parse_ambient(elements + 1, &scene->ambient);
-	// else if (ft_strncmp(elements[0], "C", 1) == 0)
-	// 	parse_camera(elements + 1, &scene->camera);
+	else if (ft_strncmp(elements[0], "C", 1) == 0)
+	    status = parse_camera(elements + 1, &scene->camera);
 	// else if (ft_strncmp(elements[0], "L", 1) == 0)
 	// 	parse_light(elements + 1, &scene->lights);
 	// else if (ft_strncmp(elements[0], "sp", 2) == 0)
