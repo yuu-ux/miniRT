@@ -18,8 +18,8 @@ int	parse_camera(char **elements, t_camera *camera)
 
 	if (camera->position.x != -1 || camera->position.y != -1
 		|| camera->position.z != -1 || camera->orientation.x != -1
-        || camera->orientation.y != -1 || camera->orientation.z != -1
-        || camera->fov != -1)
+		|| camera->orientation.y != -1 || camera->orientation.z != -1
+		|| camera->fov != -1)
 		return (EXIT_FAILURE);
 	if (count_array(elements) != 3)
 		return (EXIT_FAILURE);
@@ -27,9 +27,9 @@ int	parse_camera(char **elements, t_camera *camera)
 		return (EXIT_FAILURE);
 	if (parse_vector(elements[1], &camera->orientation) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-    if (validate_vector(camera->orientation) == EXIT_FAILURE)
-        return (EXIT_FAILURE);
-    fov = ft_atof(elements[2]);
+	if (validate_vector(camera->orientation) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	fov = ft_atof(elements[2]);
 	if (fov < 0 || fov > 180)
 		return (EXIT_FAILURE);
 	camera->fov = fov;
