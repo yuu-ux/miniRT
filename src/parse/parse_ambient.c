@@ -20,7 +20,7 @@ int	parse_ambient(char **elements, t_ambient *ambient)
 	if (ambient->brightness != -1 || ambient->color.r != -1
 		|| ambient->color.g != -1 || ambient->color.b != -1)
 		return (EXIT_FAILURE);
-	if (count_array(elements) > 2)
+	if (count_array(elements) != 2)
 		return (EXIT_FAILURE);
 	brightness = ft_atof(elements[0]);
 	if (brightness < 0.0 || brightness > 1.0)
