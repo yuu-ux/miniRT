@@ -1,21 +1,30 @@
 #!/bin/bash
 
 declare -A test_cases=(
-    ["rt_file/error_A_arg_more.rt"]=1
-    ["rt_file/error_A_arg_less.rt"]=1
-    ["rt_file/error_A_brightness_big.rt"]=1
-    ["rt_file/error_A_brightness_small.rt"]=1
-    ["rt_file/error_A_color_big.rt"]=1
-    ["rt_file/error_A_color_small.rt"]=1
-    ["rt_file/error_A_duplicate.rt"]=1
-    ["rt_file/error_A_char.rt"]=1
-    ["rt_file/error_C_arg_more.rt"]=1
-    ["rt_file/error_C_arg_less.rt"]=1
-    ["rt_file/error_C_fov_big.rt"]=1
-    ["rt_file/error_C_fov_small.rt"]=1
-    ["rt_file/error_C_vec_big.rt"]=1
-    ["rt_file/error_C_vec_small.rt"]=1
-    ["rt_file/error_C_duplicate.rt"]=1
+    ["rt_file/_A/arg_more.rt"]=1
+    ["rt_file/_A/arg_less.rt"]=1
+    ["rt_file/_A/brightness_big.rt"]=1
+    ["rt_file/_A/brightness_small.rt"]=1
+    ["rt_file/_A/color_big.rt"]=1
+    ["rt_file/_A/color_small.rt"]=1
+    ["rt_file/_A/duplicate.rt"]=1
+    ["rt_file/_A/char.rt"]=1
+    ["rt_file/_C/arg_more.rt"]=1
+    ["rt_file/_C/char.rt"]=1
+    ["rt_file/_C/arg_less.rt"]=1
+    ["rt_file/_C/fov_big.rt"]=1
+    ["rt_file/_C/fov_small.rt"]=1
+    ["rt_file/_C/vec_big.rt"]=1
+    ["rt_file/_C/vec_small.rt"]=1
+    ["rt_file/_C/duplicate.rt"]=1
+    ["rt_file/_L/arg_more.rt"]=1
+	["rt_file/_L/arg_less.rt"]=1
+    ["rt_file/_L/char.rt"]=1
+    ["rt_file/_L/color_big.rt"]=1
+    ["rt_file/_L/color_small.rt"]=1
+    ["rt_file/_L/light_big.rt"]=1
+    ["rt_file/_L/light_small.rt"]=1
+    ["rt_file/_L/duplicate.rt"]=1
     ["rt_file/success.rt"]=0
 )
 

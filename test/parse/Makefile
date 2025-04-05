@@ -6,7 +6,7 @@
 #    By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 19:41:00 by yehara            #+#    #+#              #
-#    Updated: 2025/04/03 19:11:02 by ssoeno           ###   ########.fr        #
+#    Updated: 2025/04/05 19:39:55 by yehara           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS = main.c \
 	$(SRCDIR)/parse_util.c \
 	$(SRCDIR)/parse.c \
 	$(SRCDIR)/parse_camera.c \
+	$(SRCDIR)/parse_light.c \
 	../../src/util/error.c \
 	../../src/raytracing/vector_utils.c
 OBJ = $(notdir $(SRCS:.c=.o))

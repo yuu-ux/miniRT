@@ -6,7 +6,7 @@
 /*   By: yehara <yehara@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 21:21:03 by yehara            #+#    #+#             */
-/*   Updated: 2025/04/04 22:58:16 by yehara           ###   ########.fr       */
+/*   Updated: 2025/04/05 19:31:03 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static int	parse_rt_line(char *line, t_scene *scene)
 		status = parse_ambient(elements + 1, &scene->ambient);
 	else if (ft_strncmp(elements[0], "C", 1) == 0)
 		status = parse_camera(elements + 1, &scene->camera);
-	// else if (ft_strncmp(elements[0], "L", 1) == 0)
-	// 	parse_light(elements + 1, &scene->lights);
+	else if (ft_strncmp(elements[0], "L", 1) == 0)
+		status = parse_light(elements + 1, &scene->light);
 	// else if (ft_strncmp(elements[0], "sp", 2) == 0)
 	// 	parse_sphere(elements[0] + 2, &scene->objects);
 	// else if (ft_strncmp(elements[0], "pl", 2) == 0)
