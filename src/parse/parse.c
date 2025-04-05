@@ -53,7 +53,7 @@ int	parse_rt_file(const char *filename, t_scene *scene)
 		line = ft_chomp(line);
 		if (ft_strlen(line) <= 0 || parse_rt_line(line, scene) == EXIT_FAILURE)
 		{
-			error_exit("map error");
+			error_exit("input error");
 			return (EXIT_FAILURE);
 		}
 		free(line);
