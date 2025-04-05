@@ -26,7 +26,7 @@ for file in "${!test_cases[@]}"; do
     if [ "$?" -eq "$expected_status" ]; then
         echo -e "$file: \e[32mOK\e[0m"
     else
-        echo -e "$file: \e[31mNG (got $status)\e[0m"
+        echo -e "$file: \e[31mNG\e[0m"
     fi
 done
 
