@@ -24,6 +24,8 @@ t_object    *parse_sphere(char **elements)
 		return (NULL);
     if (parse_color(elements[2], &sphere->color) == EXIT_FAILURE)
         return (NULL);
+    // TODO 変換できなかった時のエラー処理を追加する
+    // TODO a とか文字列だった場合は-1を返す（ft_atofを修正）
     sphere->diameter = ft_atof(elements[1]);
     sphere->shape = SPHERE;
 	return (sphere);
