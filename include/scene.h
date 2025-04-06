@@ -46,25 +46,20 @@ typedef struct s_ambient {
 	t_color	color;
 }			t_ambient;
 
-typedef struct s_sphere {
-	t_vec	center;
-	double	diameter;
-	t_color	color;
-}			t_sphere;
+typedef enum e_shape {
+    SPHERE,
+    PLANE,
+    CYLINDER,
+} t_shape;
 
-typedef struct s_plane {
-	t_vec	point;
+typedef struct s_object {
+    t_shape shape;
+	t_vec	center;
 	t_vec	normal;
-	t_color	color;
-}			t_plane;
-
-typedef struct s_cylinder {
-	t_vec	center;
-	t_vec	axis; // Normalized vector
 	double	diameter;
 	double	height;
 	t_color	color;
-} t_cylinder;
+} t_object;
 
 typedef struct s_scene
 {
