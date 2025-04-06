@@ -55,6 +55,22 @@ int	main(int argc, char **argv)
 		printf("red: %f\n", scene->light.color.r);
 		printf("green: %f\n", scene->light.color.g);
 		printf("blue: %f\n", scene->light.color.b);
+        while (scene->objects)
+        {
+            printf("shape: %d\n", ((t_object *)scene->objects->content)->shape);
+            printf("x: %f\n", ((t_object *)scene->objects->content)->center.x);
+            printf("y: %f\n", ((t_object *)scene->objects->content)->center.y);
+            printf("z: %f\n", ((t_object *)scene->objects->content)->center.z);
+            printf("x: %f\n", ((t_object *)scene->objects->content)->normal.x);
+            printf("y: %f\n", ((t_object *)scene->objects->content)->normal.y);
+            printf("z: %f\n", ((t_object *)scene->objects->content)->normal.z);
+            printf("diameter: %f\n", ((t_object *)scene->objects->content)->diameter);
+            printf("height: %f\n", ((t_object *)scene->objects->content)->height);
+            printf("red: %f\n", ((t_object *)scene->objects->content)->color.r);
+            printf("green: %f\n", ((t_object *)scene->objects->content)->color.g);
+            printf("blue: %f\n", ((t_object *)scene->objects->content)->color.b);
+            scene->objects = scene->objects->next;
+        }
 	}
 	return (status);
 }
