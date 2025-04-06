@@ -14,7 +14,7 @@
 #include <scene.h>
 #include <util.h>
 
-static	int	parse_objects(char **elements, t_list **objects, void *(*parse_object)(char **elements))
+static	int	parse_objects(char **elements, t_list **objects, t_object *(*parse_object)(char **elements))
 {
 	void 	*content;
 
@@ -42,7 +42,7 @@ static int	parse_rt_line(char *line, t_scene *scene)
 	else if (ft_strncmp(elements[0], "L", 1) == 0)
 		status = parse_light(elements + 1, &scene->light);
 	else if (ft_strncmp(elements[0], "sp", 2) == 0)
-		status = parse_objects(elements + 2, &scene->objects, parse_sphere);
+		status = parse_objects(elements + 1, &scene->objects, parse_sphere);
 	// else if (ft_strncmp(elements[0], "pl", 2) == 0)
 	// 	parse_plane(elements[0] + 2, &scene->objects);
 	// else if (ft_strncmp(elements[0], "cy", 2) == 0)

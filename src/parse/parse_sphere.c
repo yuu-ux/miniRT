@@ -13,16 +13,19 @@
 #include <scene.h>
 #include <parse.h>
 
-void	*parse_sphere(char **elements)
+t_object    *parse_sphere(char **elements)
 {
-	t_sphere *sphere;
+	t_object *sphere;
 
-	sphere = ft_xmalloc(sizeof(t_sphere));
+	sphere = ft_xmalloc(sizeof(t_object));
 	if (count_array(elements) != 3)
 		return (NULL);
 	if (parse_vector(elements[0], &sphere->center) == EXIT_FAILURE)
 		return (NULL);
-	sphere->diameter = ft_atof(elements[1]);
+    if (parse_color(elements[2], &sphere->color) == EXIT_FAILURE)
+        return (NULL);
+    sphere->diameter = ft_atof(elements[1]);
+    sphere->shape = SPHERE;
 	return (sphere);
 }
 
