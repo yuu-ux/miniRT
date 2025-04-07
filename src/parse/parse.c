@@ -6,7 +6,7 @@
 /*   By: yehara <yehara@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 21:21:03 by yehara            #+#    #+#             */
-/*   Updated: 2025/04/05 21:48:35 by yehara           ###   ########.fr       */
+/*   Updated: 2025/04/07 18:41:28 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,8 @@ static int	parse_rt_line(char *line, t_scene *scene)
 		status = parse_objects(elements + 1, &scene->objects, parse_plane);
 	else if (ft_strncmp(elements[0], "cy", 2) == 0)
 		status = parse_objects(elements + 1, &scene->objects, parse_cylinder);
-	// else
-	// {
-	// 	ft_putstr_fd("Error\nUnknown identifier\n", 2);
-	// 	exit(EXIT_FAILURE);
-	// }
-	free_double_array(elements);
+	else
+		status = EXIT_FAILURE;
 	return (status);
 }
 
@@ -75,3 +71,4 @@ int	parse_rt_file(const char *filename, t_scene *scene)
 	ft_xclose(fd);
 	return (EXIT_SUCCESS);
 }
+
