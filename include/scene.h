@@ -14,6 +14,7 @@
 # define SCENE_H
 # include "../libft/include/libft.h"
 # include <math.h>
+#include <stdbool.h>
 
 typedef struct s_vec {
 	double	x;
