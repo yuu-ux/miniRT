@@ -6,7 +6,7 @@
 #    By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 19:41:00 by yehara            #+#    #+#              #
-#    Updated: 2025/04/05 20:17:51 by yehara           ###   ########.fr        #
+#    Updated: 2025/04/07 18:23:59 by yehara           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ PARSE_SRCS = parse.c \
 			 parse_camera.c \
 			 parse_light.c \
 			 parse_sphere.c \
-			 parse_plane.c
+			 parse_plane.c \
+			 parse_cylinder.c
 
 # raytracing
 RAYTRACING_SRCS = vector_utils.c
