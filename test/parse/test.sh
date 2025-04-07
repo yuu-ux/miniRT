@@ -42,6 +42,8 @@ declare -A test_cases=(
 	["rt_file/_cy/color_big.rt"]=1
 	["rt_file/_cy/color_small.rt"]=1
 	["rt_file/_cy/vec.rt"]=1
+	["rt_file/common/invalid_identifier.rt"]=1
+	["rt_file/common/invalid_extensions"]=1
     ["rt_file/success.rt"]=0
 )
 
