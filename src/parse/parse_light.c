@@ -19,8 +19,7 @@ int	parse_light(char **elements, t_light *light)
 
 	if (light->position.x != -1 || light->position.y != -1
 		|| light->position.z != -1 || light->brightness != -1
-		|| light->color.r != -1 || light->color.g != -1
-		|| light->color.b != -1)
+		|| light->color.r != -1 || light->color.g != -1 || light->color.b != -1)
 		return (EXIT_FAILURE);
 	if (count_array(elements) != 3)
 		return (EXIT_FAILURE);
@@ -34,4 +33,3 @@ int	parse_light(char **elements, t_light *light)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
-

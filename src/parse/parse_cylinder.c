@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <scene.h>
 #include <parse.h>
+#include <scene.h>
 
-t_object    *parse_cylinder(char **elements)
+t_object	*parse_cylinder(char **elements)
 {
-	t_object *cylinder;
+	t_object	*cylinder;
 
 	cylinder = ft_xmalloc(sizeof(t_object));
 	if (count_array(elements) != 5)
@@ -28,9 +28,8 @@ t_object    *parse_cylinder(char **elements)
 		return (NULL);
 	cylinder->diameter = ft_atof(elements[2]);
 	cylinder->height = ft_atof(elements[3]);
-    if (parse_color(elements[4], &cylinder->color) == EXIT_FAILURE)
-        return (NULL);
-    cylinder->shape = CYLINDER;
+	if (parse_color(elements[4], &cylinder->color) == EXIT_FAILURE)
+		return (NULL);
+	cylinder->shape = CYLINDER;
 	return (cylinder);
 }
-

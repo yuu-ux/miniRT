@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <scene.h>
 #include <parse.h>
+#include <scene.h>
 
-t_object    *parse_plane(char **elements)
+t_object	*parse_plane(char **elements)
 {
-	t_object *plane;
+	t_object	*plane;
 
 	plane = ft_xmalloc(sizeof(t_object));
 	if (count_array(elements) != 3)
@@ -31,4 +31,3 @@ t_object    *parse_plane(char **elements)
 	plane->shape = PLANE;
 	return (plane);
 }
-
