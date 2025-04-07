@@ -30,6 +30,12 @@ declare -A test_cases=(
     ["rt_file/_sp/char.rt"]=1
     ["rt_file/_sp/color_big.rt"]=1
     ["rt_file/_sp/color_small.rt"]=1
+	["rt_file/_pl/arg_less.rt"]=1
+	["rt_file/_pl/arg_more.rt"]=1
+	["rt_file/_pl/char.rt"]=1
+	["rt_file/_pl/color_big.rt"]=1
+	["rt_file/_pl/color_small.rt"]=1
+	["rt_file/_pl/vec.rt"]=1
     ["rt_file/success.rt"]=0
 )
 
