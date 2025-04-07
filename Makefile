@@ -18,7 +18,8 @@ PARSE_SRCS = parse.c \
 			 parse_util.c \
 			 parse_camera.c \
 			 parse_light.c \
-			 parse_sphere.c
+			 parse_sphere.c \
+			 parse_plane.c
 
 # raytracing
 RAYTRACING_SRCS = vector_utils.c

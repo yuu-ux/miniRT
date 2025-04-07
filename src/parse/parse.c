@@ -43,10 +43,10 @@ static int	parse_rt_line(char *line, t_scene *scene)
 		status = parse_light(elements + 1, &scene->light);
 	else if (ft_strncmp(elements[0], "sp", 2) == 0)
 		status = parse_objects(elements + 1, &scene->objects, parse_sphere);
-	// else if (ft_strncmp(elements[0], "pl", 2) == 0)
-	// 	parse_plane(elements[0] + 2, &scene->objects);
+	else if (ft_strncmp(elements[0], "pl", 2) == 0)
+		status = parse_objects(elements + 1, &scene->objects, parse_plane);
 	// else if (ft_strncmp(elements[0], "cy", 2) == 0)
-	// 	parse_cylinder(elements[0] + 2, &scene->objects);
+	// 	status = parse_cylinder(elements[0] + 2, &scene->objects);
 	// else
 	// {
 	// 	ft_putstr_fd("Error\nUnknown identifier\n", 2);
