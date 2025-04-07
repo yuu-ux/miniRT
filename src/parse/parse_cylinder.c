@@ -19,17 +19,17 @@ t_object    *parse_cylinder(char **elements)
 
 	cylinder = ft_xmalloc(sizeof(t_object));
 	if (count_array(elements) != 5)
-		return (NULL);
+		return (free(cylinder), NULL);
 	if (parse_vector(elements[0], &cylinder->center) == EXIT_FAILURE)
-		return (NULL);
+		return (free(cylinder), NULL);
 	if (parse_vector(elements[1], &cylinder->normal) == EXIT_FAILURE)
-		return (NULL);
+		return (free(cylinder), NULL);
 	if (validate_vector(cylinder->normal) == EXIT_FAILURE)
-		return (NULL);
+		return (free(cylinder), NULL);
 	cylinder->diameter = ft_atof(elements[2]);
 	cylinder->height = ft_atof(elements[3]);
     if (parse_color(elements[4], &cylinder->color) == EXIT_FAILURE)
-        return (NULL);
+        return (free(cylinder), NULL);
     cylinder->shape = CYLINDER;
 	return (cylinder);
 }

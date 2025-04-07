@@ -19,15 +19,15 @@ t_object	*parse_plane(char **elements)
 
 	plane = ft_xmalloc(sizeof(t_object));
 	if (count_array(elements) != 3)
-		return (NULL);
+		return (free(plane), NULL);
 	if (parse_vector(elements[0], &plane->center) == EXIT_FAILURE)
-		return (NULL);
+		return (free(plane), NULL);
 	if (parse_vector(elements[1], &plane->normal) == EXIT_FAILURE)
-		return (NULL);
+		return (free(plane), NULL);
 	if (validate_vector(plane->normal) == EXIT_FAILURE)
-		return (NULL);
+		return (free(plane), NULL);
 	if (parse_color(elements[2], &plane->color) == EXIT_FAILURE)
-		return (NULL);
+		return (free(plane), NULL);
 	plane->shape = PLANE;
 	return (plane);
 }
