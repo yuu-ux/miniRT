@@ -6,7 +6,7 @@
 #    By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 19:41:00 by yehara            #+#    #+#              #
-#    Updated: 2025/04/05 18:49:54 by yehara           ###   ########.fr        #
+#    Updated: 2025/04/07 20:12:34 by yehara           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,17 @@ PARSE_SRCS = parse.c \
 			 parse_ambient.c \
 			 parse_util.c \
 			 parse_camera.c \
-			 parse_light.c
+			 parse_light.c \
+			 parse_sphere.c \
+			 parse_plane.c \
+			 parse_cylinder.c
 
 # raytracing
 RAYTRACING_SRCS = vector_utils.c
 # util
 UTIL_SRCS = error.c
-
+# init
+INIT_SRCS = init.c
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
@@ -31,7 +35,8 @@ OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 SRCS = $(SRC_DIR)/main.c \
 	   $(addprefix $(SRC_DIR)/parse/, $(PARSE_SRCS)) \
 	   $(addprefix $(SRC_DIR)/util/, $(UTIL_SRCS)) \
-	   $(addprefix $(SRC_DIR)/raytracing/, $(RAYTRACING_SRCS))
+	   $(addprefix $(SRC_DIR)/raytracing/, $(RAYTRACING_SRCS)) \
+	   $(addprefix $(SRC_DIR)/init/, $(INIT_SRCS))
 
 # libft
 LIBFT_DIR = ./libft

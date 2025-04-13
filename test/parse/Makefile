@@ -20,6 +20,9 @@ SRCS = main.c \
 	$(SRCDIR)/parse.c \
 	$(SRCDIR)/parse_camera.c \
 	$(SRCDIR)/parse_light.c \
+	$(SRCDIR)/parse_sphere.c \
+	$(SRCDIR)/parse_plane.c \
+	$(SRCDIR)/parse_cylinder.c \
 	../../src/util/error.c \
 	../../src/raytracing/vector_utils.c
 OBJ = $(notdir $(SRCS:.c=.o))

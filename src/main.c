@@ -6,17 +6,18 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:01:34 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/04/02 20:31:58 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/04/07 20:35:45 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include <init.h>
 #include <mlx_utils.h>
+#include <parse.h>
 #include <scene.h>
+#include <util.h>
 
 #define KEY_ESC 65307
-#define WIDTH 800
-#define HEIGHT 600
+#define MIN_FILE_LENGTH 4
 
 int	key_event(int keycode, void *param)
 {
@@ -42,34 +43,38 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int main(int argc, char **argv)
+static bool	is_rt_extensions(char *file)
 {
+	size_t	file_len;
+
+	file_len = ft_strlen(file);
+	if (file_len < MIN_FILE_LENGTH)
+		return (false);
+	if (ft_strncmp(file + (file_len - MIN_FILE_LENGTH), ".rt",
+			4) != EXIT_SUCCESS)
+		return (false);
+	return (true);
+}
+
+int	main(int argc, char **argv)
+{
+	t_scene	scene;
 	t_mlx	mlx;
 
-	(void)argv;
 	if (argc != 2)
-		return (ft_printf("Usage: ./miniRT scene.rt\n"));
-	mlx.mlx = mlx_init();
-	mlx.window = mlx_new_window(mlx.mlx, WIDTH, HEIGHT, "miniRT");
-	mlx.img.img_ptr = mlx_new_image(mlx.mlx, WIDTH, HEIGHT);
-	mlx.img.addr = mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp,
-			&mlx.img.line_length, &mlx.img.endian);
-	mlx.img.width = WIDTH;
-	mlx.img.height = HEIGHT;
-
+		return (error_exit("Usage: ./miniRT scene.rt\n"));
+	if (!is_rt_extensions(argv[1]))
+		return (error_exit("Invalid extensions"));
+	init_data(&scene, &mlx);
+	parse_rt_file(argv[1], &scene);
 	for (int y = 250; y < 350; y++)
 	{
 		for (int x = 350; x < 450; x++)
 		{
-			put_pixel(&mlx.img, x, y, 0x00FF0000);  // 赤色 (R=255, G=0, B=0)
+			put_pixel(&mlx.img, x, y, 0x00FF0000); // 赤色 (R=255, G=0, B=0)
 		}
 	}
 	mlx_put_image_to_window(mlx.mlx, mlx.window, mlx.img.img_ptr, 0, 0);
-	// scene初期化
-	// ft_bzero(&data, sizeof(t_scene));
-	// if (parse_rt_file(argv[1], &scebe.scene) != 0)
-	// 	return (1);
-	// render_scene(&data);
 	mlx_hook(mlx.window, 2, 1L << 0, key_event, NULL);
 	mlx_hook(mlx.window, 17, 1L << 17, close_window, NULL);
 	mlx_loop(mlx.mlx);
