@@ -27,5 +27,5 @@ t_object    *parse_cylinder(char **elements);
 int	count_array(char **array);
 int	parse_color(char *elements, t_color *color);
 int	parse_vector(char *elements, t_vec *vector);
-int	validate_vector(t_vec vector);
+int	validate_normalize(t_vec vector);
 #endif

@@ -46,7 +46,7 @@ int	parse_color(char *elements, t_color *color)
 	return (EXIT_SUCCESS);
 }
 
-int	validate_vector(t_vec vector)
+int	validate_normalize(t_vec vector)
 {
 	double	magnitude;
 

@@ -24,7 +24,7 @@ t_object    *parse_cylinder(char **elements)
 		return (free(cylinder), NULL);
 	if (parse_vector(elements[1], &cylinder->normal) == EXIT_FAILURE)
 		return (free(cylinder), NULL);
-	if (validate_vector(cylinder->normal) == EXIT_FAILURE)
+	if (validate_normalize(cylinder->normal) == EXIT_FAILURE)
 		return (free(cylinder), NULL);
 	cylinder->diameter = ft_atof(elements[2]);
 	cylinder->height = ft_atof(elements[3]);
