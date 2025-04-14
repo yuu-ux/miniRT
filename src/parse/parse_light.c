@@ -12,6 +12,7 @@
 
 #include <parse.h>
 #include <scene.h>
+#include <util.h>
 
 int	parse_light(char **elements, t_light *light)
 {
@@ -26,7 +27,7 @@ int	parse_light(char **elements, t_light *light)
 		return (EXIT_FAILURE);
 	if (parse_vector(elements[0], &light->position) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	brightness = ft_atof(elements[1]);
+	brightness = ft_xatof(elements[1]);
 	if (brightness < 0.0 || brightness > 1.0)
 		return (EXIT_FAILURE);
 	light->brightness = brightness;

@@ -6,7 +6,7 @@
 #    By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 19:41:00 by yehara            #+#    #+#              #
-#    Updated: 2025/04/05 19:39:55 by yehara           ###   ########.fr        #
+#    Updated: 2025/04/14 18:34:33 by yehara           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS = main.c \
 	$(SRCDIR)/parse_plane.c \
 	$(SRCDIR)/parse_cylinder.c \
 	../../src/util/error.c \
+	../../src/util/ft_xatof.c \
 	../../src/raytracing/vector_utils.c
 OBJ = $(notdir $(SRCS:.c=.o))
 
