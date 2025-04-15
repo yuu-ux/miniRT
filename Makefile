@@ -23,8 +23,9 @@ PARSE_SRCS = parse.c \
 			 parse_cylinder.c
 
 # raytracing
-RAYTRACING_SRCS = vector_utils.c \
-				  raytracing.c
+RAYTRACING_SRCS = raytracing.c \
+				  vector_utils.c \
+				  vector_products.c
 # util
 UTIL_SRCS = error.c \
 			ft_xatof.c
