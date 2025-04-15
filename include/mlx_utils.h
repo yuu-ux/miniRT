@@ -13,9 +13,10 @@
 #ifndef MLX_UTILS_H
 # define MLX_UTILS_H
 
-# include "mlx.h"
-# include "libft.h"
-# include "scene.h"
+#include <mlx.h>
+#include <scene.h>
+
+#define KEY_ESC 65307
 
 typedef struct s_img
 {
@@ -39,6 +40,10 @@ typedef struct s_mlx
 }			t_mlx;
 
 #endif
+
+int	key_event(int keycode, void *param);
+int	close_window(void *param);
+int	main_loop(t_mlx *mlx);
 
 /*
 void render(t_mlx *mlx_data)

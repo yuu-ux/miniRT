@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:01:34 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/04/14 19:04:20 by yehara           ###   ########.fr       */
+/*   Updated: 2025/04/15 20:06:50 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,10 @@
 #include <parse.h>
 #include <scene.h>
 #include <util.h>
+#include <raytracing.h>
 
-#define KEY_ESC 65307
 #define MIN_FILE_LENGTH 4
 #define EXTENSIONS_NUM 3
-
-int	key_event(int keycode, void *param)
-{
-	(void)param;
-	if (keycode == KEY_ESC)
-	{
-		exit(0);
-	}
-	return (0);
-}
-
-int	close_window(void *param)
-{
-	(void)param;
-	exit(0);
-}
 
 void	put_pixel(t_img *img, int x, int y, int color)
 {
@@ -43,6 +27,7 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
 }
+
 
 static bool	is_rt_extensions(char *file)
 {
@@ -75,9 +60,11 @@ int	main(int argc, char **argv)
 			put_pixel(&mlx.img, x, y, 0x00FF0000); // 赤色 (R=255, G=0, B=0)
 		}
 	}
+	raytracing(&mlx);
 	mlx_put_image_to_window(mlx.mlx, mlx.window, mlx.img.img_ptr, 0, 0);
 	mlx_hook(mlx.window, 2, 1L << 0, key_event, NULL);
 	mlx_hook(mlx.window, 17, 1L << 17, close_window, NULL);
+	// mlx_loop_hook(mlx.mlx, &main_loop, &mlx);
 	mlx_loop(mlx.mlx);
 	return (0);
 }
