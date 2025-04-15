@@ -10,6 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx_utils.h>
+#include <mlx_util.h>
 
 void		raytracing(t_mlx *mlx);

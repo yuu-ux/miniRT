@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <scene.h>
-#include <mlx_utils.h>
+#include <mlx_util.h>
 #include <raytracing.h>
 
 int	key_event(int keycode, void *param)

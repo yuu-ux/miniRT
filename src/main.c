@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <init.h>
-#include <mlx_utils.h>
+#include <mlx_util.h>
 #include <parse.h>
 #include <scene.h>
 #include <util.h>
@@ -53,13 +53,6 @@ int	main(int argc, char **argv)
 		return (error_exit("Invalid extensions"));
 	init_data(&scene, &mlx);
 	parse_rt_file(argv[1], &scene);
-	for (int y = 250; y < 350; y++)
-	{
-		for (int x = 350; x < 450; x++)
-		{
-			put_pixel(&mlx.img, x, y, 0x00FF0000); // 赤色 (R=255, G=0, B=0)
-		}
-	}
 	raytracing(&mlx);
 	mlx_put_image_to_window(mlx.mlx, mlx.window, mlx.img.img_ptr, 0, 0);
 	mlx_hook(mlx.window, 2, 1L << 0, key_event, NULL);

@@ -10,11 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx_utils.h>
+#include <mlx_util.h>
 #include <scene.h>
+#include <util.h>
 
-#define WIDTH 800
-#define HEIGHT 600
 #define INITIAL_VALUE -1
 
 static void	init_scene(t_scene *scene)
@@ -43,6 +42,8 @@ static void	init_scene(t_scene *scene)
 static void	init_mlx(t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
+	if (mlx->mlx == NULL)
+		error_exit("mlx error");
 	mlx->window = mlx_new_window(mlx->mlx, WIDTH, HEIGHT, "miniRT");
 	mlx->img.img_ptr = mlx_new_image(mlx->mlx, WIDTH, HEIGHT);
 	mlx->img.addr = mlx_get_data_addr(mlx->img.img_ptr, &mlx->img.bpp,

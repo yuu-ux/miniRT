@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_utils.h                                        :+:      :+:    :+:   */
+/*   mlx_util.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -17,6 +17,8 @@
 #include <scene.h>
 
 #define KEY_ESC 65307
+#define WIDTH 800
+#define HEIGHT 600
 
 typedef struct s_img
 {
