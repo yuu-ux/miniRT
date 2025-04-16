@@ -14,9 +14,10 @@
 #include <scene.h>
 #include <util.h>
 
-static	int	parse_objects(char **elements, t_list **objects, t_object *(*parse_object)(char **elements))
+static int	parse_objects(char **elements, t_list **objects,
+		t_object *(*parse_object)(char **elements))
 {
-	void 	*content;
+	void	*content;
 
 	content = parse_object(elements);
 	if (content == NULL)
@@ -58,8 +59,11 @@ int	parse_rt_file(const char *filename, t_scene *scene)
 	char	*line;
 
 	fd = ft_xopen(filename, O_RDONLY);
-	while ((line = get_next_line(fd)) != NULL)
+	while (true)
 	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
 		line = ft_chomp(line);
 		if (ft_strlen(line) <= 0 || parse_rt_line(line, scene) == EXIT_FAILURE)
 			error_exit("input error");
@@ -68,4 +72,3 @@ int	parse_rt_file(const char *filename, t_scene *scene)
 	ft_xclose(fd);
 	return (EXIT_SUCCESS);
 }
-
