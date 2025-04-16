@@ -13,9 +13,9 @@
 #include <init.h>
 #include <mlx_util.h>
 #include <parse.h>
+#include <raytracing.h>
 #include <scene.h>
 #include <util.h>
-#include <raytracing.h>
 
 #define MIN_FILE_LENGTH 4
 #define EXTENSIONS_NUM 3
@@ -27,7 +27,6 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
 }
-
 
 static bool	is_rt_extensions(char *file)
 {
@@ -53,6 +52,7 @@ int	main(int argc, char **argv)
 		return (error_exit("Invalid extensions"));
 	init_data(&scene, &mlx);
 	parse_rt_file(argv[1], &scene);
+	mlx.scene = scene;
 	raytracing(&mlx);
 	mlx_put_image_to_window(mlx.mlx, mlx.window, mlx.img.img_ptr, 0, 0);
 	mlx_hook(mlx.window, 2, 1L << 0, key_event, NULL);
