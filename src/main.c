@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:01:34 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/04/07 20:35:45 by yehara           ###   ########.fr       */
+/*   Updated: 2025/04/14 19:04:20 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 #define KEY_ESC 65307
 #define MIN_FILE_LENGTH 4
+#define EXTENSIONS_NUM 3
 
 int	key_event(int keycode, void *param)
 {
@@ -50,8 +51,8 @@ static bool	is_rt_extensions(char *file)
 	file_len = ft_strlen(file);
 	if (file_len < MIN_FILE_LENGTH)
 		return (false);
-	if (ft_strncmp(file + (file_len - MIN_FILE_LENGTH), ".rt",
-			4) != EXIT_SUCCESS)
+	if (ft_strncmp(file + (file_len - EXTENSIONS_NUM), ".rt",
+			EXTENSIONS_NUM) != EXIT_SUCCESS)
 		return (false);
 	return (true);
 }

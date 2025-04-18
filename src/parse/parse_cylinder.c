@@ -12,6 +12,7 @@
 
 #include <scene.h>
 #include <parse.h>
+#include <util.h>
 
 t_object    *parse_cylinder(char **elements)
 {
@@ -26,8 +27,8 @@ t_object    *parse_cylinder(char **elements)
 		return (free(cylinder), NULL);
 	if (validate_normalize(cylinder->normal) == EXIT_FAILURE)
 		return (free(cylinder), NULL);
-	cylinder->diameter = ft_atof(elements[2]);
-	cylinder->height = ft_atof(elements[3]);
+	cylinder->diameter = ft_xatof(elements[2]);
+	cylinder->height = ft_xatof(elements[3]);
     if (parse_color(elements[4], &cylinder->color) == EXIT_FAILURE)
         return (free(cylinder), NULL);
     cylinder->shape = CYLINDER;

@@ -6,7 +6,7 @@
 #    By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 19:41:00 by yehara            #+#    #+#              #
-#    Updated: 2025/04/07 20:12:34 by yehara           ###   ########.fr        #
+#    Updated: 2025/04/14 18:23:46 by yehara           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ PARSE_SRCS = parse.c \
 # raytracing
 RAYTRACING_SRCS = vector_utils.c
 # util
-UTIL_SRCS = error.c
+UTIL_SRCS = error.c \
+			ft_xatof.c
 # init
 INIT_SRCS = init.c
 

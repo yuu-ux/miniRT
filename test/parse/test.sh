@@ -37,6 +37,7 @@ declare -A test_cases=(
     ["rt_file/_sp/char.rt"]=1
     ["rt_file/_sp/color_big.rt"]=1
     ["rt_file/_sp/color_small.rt"]=1
+	["rt_file/_sp/invalid_num.rt"]=1
 
     # Plane tests
     ["rt_file/_pl/arg_less.rt"]=1

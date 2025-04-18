@@ -6,10 +6,11 @@
 /*   By: yehara <yehara@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 21:18:27 by yehara            #+#    #+#             */
-/*   Updated: 2025/04/04 23:00:29 by yehara           ###   ########.fr       */
+/*   Updated: 2025/04/14 18:23:58 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 int	error_exit(char *message);
 int	free_double_array(char **array);
+double	ft_xatof(char *s);

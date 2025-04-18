@@ -12,6 +12,7 @@
 
 #include <parse.h>
 #include <scene.h>
+#include <util.h>
 
 int	parse_ambient(char **elements, t_ambient *ambient)
 {
@@ -22,7 +23,7 @@ int	parse_ambient(char **elements, t_ambient *ambient)
 		return (EXIT_FAILURE);
 	if (count_array(elements) != 2)
 		return (EXIT_FAILURE);
-	brightness = ft_atof(elements[0]);
+	brightness = ft_xatof(elements[0]);
 	if (brightness < 0.0 || brightness > 1.0)
 		return (EXIT_FAILURE);
 	ambient->brightness = brightness;

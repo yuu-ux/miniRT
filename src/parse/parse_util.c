@@ -33,9 +33,9 @@ int	parse_color(char *elements, t_color *color)
 	colors = ft_xsplit(elements, ',');
 	if (count_array(colors) != 3)
 		return (free_double_array(colors));
-	red = ft_atof(colors[0]);
-	green = ft_atof(colors[1]);
-	blue = ft_atof(colors[2]);
+	red = ft_xatof(colors[0]);
+	green = ft_xatof(colors[1]);
+	blue = ft_xatof(colors[2]);
 	if ((red < 0 || red > 255) || (green < 0 || green > 255) || (blue < 0
 			|| blue > 255))
 		return (free_double_array(colors));
@@ -69,9 +69,9 @@ int	parse_vector(char *elements, t_vec *vector)
 	vectors = ft_xsplit(elements, ',');
 	if (count_array(vectors) != 3)
 		return (free_double_array(vectors));
-	x = ft_atof(vectors[0]);
-	y = ft_atof(vectors[1]);
-	z = ft_atof(vectors[2]);
+	x = ft_xatof(vectors[0]);
+	y = ft_xatof(vectors[1]);
+	z = ft_xatof(vectors[2]);
 	vector->x = x;
 	vector->y = y;
 	vector->z = z;
