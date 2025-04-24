@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shokosoeno <shokosoeno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:06:52 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/04/05 21:56:30 by yehara           ###   ########.fr       */
+/*   Updated: 2025/04/20 22:07:40 by shokosoeno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 # include "../libft/include/libft.h"
 # include <math.h>
 #include <stdbool.h>
+
+typedef enum e_shape {
+	SPHERE,
+	PLANE,
+	CYLINDER
+} t_shape;
 
 typedef struct s_vec {
 	double	x;
@@ -32,6 +38,12 @@ typedef struct s_camera {
 	t_vec	position;
 	t_vec	orientation;
 	double	fov;
+	t_vec	forward;
+	t_vec	right;
+	t_vec	up;
+	double	viewport_width;
+	double	viewport_height;
+	t_vec	lower_left_corner;
 }			t_camera;
 // 視線の方向（正規化）
 // fov 視野角（[0〜180]）
@@ -46,12 +58,6 @@ typedef struct s_ambient {
 	double	brightness;// [0.0〜1.0]
 	t_color	color;
 }			t_ambient;
-
-typedef enum e_shape {
-    SPHERE,
-    PLANE,
-    CYLINDER,
-} t_shape;
 
 typedef struct s_object {
     t_shape shape;

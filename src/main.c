@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shokosoeno <shokosoeno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:01:34 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/04/15 20:06:50 by yehara           ###   ########.fr       */
+/*   Updated: 2025/04/20 22:28:16 by shokosoeno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	main(int argc, char **argv)
 		return (error_exit("Invalid extensions"));
 	init_data(&scene, &mlx);
 	parse_rt_file(argv[1], &scene);
+	setup_camera(&scene.camera, mlx.img.width, mlx.img.height);
 	mlx.scene = scene;
 	raytracing(&mlx);
 	mlx_put_image_to_window(mlx.mlx, mlx.window, mlx.img.img_ptr, 0, 0);

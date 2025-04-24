@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+         #
+#    By: shokosoeno <shokosoeno@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 19:41:00 by yehara            #+#    #+#              #
-#    Updated: 2025/04/15 20:10:27 by yehara           ###   ########.fr        #
+#    Updated: 2025/04/20 22:37:34 by shokosoeno       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ PARSE_SRCS = parse.c \
 # raytracing
 RAYTRACING_SRCS = raytracing.c \
 				  vector_utils.c \
-				  vector_products.c
+				  vector_products.c \
+				  setup_camera.c
 # util
 UTIL_SRCS = error.c \
 			ft_xatof.c
