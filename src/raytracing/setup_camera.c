@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:39:25 by shokosoeno        #+#    #+#             */
-/*   Updated: 2025/04/26 15:02:34 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/04/26 16:00:15 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void setup_camera(t_camera *cam, int img_width, int img_heigt)
     world_up = (t_vec){0.0, 1.0, 0.0};
     cam->viewport_height = 2.0 * tan(fov_rad / 2.0);
     cam->viewport_width = cam->viewport_height * ((double)img_width / img_heigt);
-    cam->forward = normalize(cam->orientation);
+    cam->forward = cam->orientation;
     cam->right = normalize(cross_product(cam->forward, world_up));
     cam->up = cross_product(cam->right, cam->forward);
     center = add(cam->position, cam->forward);

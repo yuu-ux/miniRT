@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:07:47 by yehara            #+#    #+#             */
-/*   Updated: 2025/04/26 15:02:10 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/04/26 16:31:48 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,28 @@ int	hit_sphere(t_vec center, double radius, t_vec origin, t_vec dir)
 oc (origin to center)
 */
 
+bool	hit_plane(t_vec point_on_plane, t_vec normal, t_vec origin, t_vec dir)
+{
+	double	denominator;
+	double	t;
+	t_vec	diff;
+
+	denominator = dot_product(normal, dir);
+	if (fabs(denominator) < 1e-6)
+		return (false);
+	diff = subtract(point_on_plane, origin);
+	t = dot_product(normal, diff) / denominator;
+	if (t < 0)
+		return (false);
+	return (true);
+}
+
 int hit_object(t_vec origin, t_vec dir, t_object *obj)
 {
 	if (obj->shape == SPHERE)
 		return (hit_sphere(obj->center, obj->diameter / 2.0, origin, dir));
-	// else if (obj->shape == PLANE)
-	// 	;
+	else if (obj->shape == PLANE)
+		return (hit_plane(obj->center, obj->normal, origin, dir));
 	// else if (obj->shape == CYLINDER)
 	// 	return (hit_cylinder(obj, origin, dir));
 	return (0);
@@ -56,21 +72,32 @@ static void	ft_pixel_put(int x, int y, t_img *img, int color)
 	*(unsigned int *)(img->addr + offset) = color;
 }
 
+int convert_color(t_color color)
+{
+    int r = (int)color.r;
+    int g = (int)color.g;
+    int b = (int)color.b;
+
+    return ((r << 16) | (g << 8) | b);
+}
+
 void	raytracing(t_mlx *mlx)
 {
 	t_vec		ray_dir;
 	t_vec		ray_origin;
-	t_object	*object;
+	// t_object	*object;
 	t_vec 		pixel_pos;
 	t_vec		horizontal;
 	t_vec		vertical;
 	int			x;
 	int			y;
 	t_camera	*cam;
+	t_list	    *node;
+	t_object	*closest_object;
 
 	cam = &mlx->scene.camera;
 	ray_origin = cam->position;
-	object = (t_object *)mlx->scene.objects->content;
+	// object = (t_object *)mlx->scene.objects->content;
 	horizontal = scale(cam->right, cam->viewport_width);
 	vertical = scale(cam->up, cam->viewport_height);
 	y = 0;
@@ -84,8 +111,20 @@ void	raytracing(t_mlx *mlx)
                           scale(horizontal, (double)x / (mlx->img.width - 1))),
                   scale(vertical, (double)y / (mlx->img.height - 1)));
 			ray_dir = normalize(subtract(pixel_pos, cam->position));
-			if (hit_object(ray_origin, ray_dir, object))
-				ft_pixel_put(x, y, &mlx->img, 0xFF0000); // 赤で描画
+			node = mlx->scene.objects;
+			closest_object = NULL;
+			while (node)
+			{
+				t_object *object = (t_object *)node->content;
+				if (hit_object(ray_origin, ray_dir, object))
+				{
+					closest_object = object;
+					break ;
+				}
+				node = node->next;
+			}
+			if (closest_object)
+				ft_pixel_put(x, y, &mlx->img, convert_color(closest_object->color)); // 赤で描画
 			else
 				ft_pixel_put(x, y, &mlx->img, 0x000000); // 黒で背景
 			x++;
