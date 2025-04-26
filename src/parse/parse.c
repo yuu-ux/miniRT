@@ -68,13 +68,11 @@ int	parse_rt_file(const char *filename, t_scene *scene)
 		if (line == NULL)
 			break ;
 		line = ft_chomp(line);
-		if (ft_strlen(line) <= 0)
-		{
-			status = parse_rt_line(line, scene);
-            printf("%d\n", status);
-			if (status != SUCCESS)
-				error_exit(NULL, status);
-		}
+        if (ft_strlen(line) == 0)
+            continue ;
+        status = parse_rt_line(line, scene);
+        if (status != SUCCESS)
+            error_exit(NULL, status);
 		free(line);
 	}
 	ft_xclose(fd);

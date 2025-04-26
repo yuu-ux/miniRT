@@ -68,13 +68,6 @@ int	main(int argc, char **argv)
 		return (error_exit("Invalid extensions", INVALID_ERR_STATUS));
 	init_data(&scene, &mlx);
 	parse_rt_file(argv[1], &scene);
-	for (int y = 250; y < 350; y++)
-	{
-		for (int x = 350; x < 450; x++)
-		{
-			put_pixel(&mlx.img, x, y, 0x00FF0000); // 赤色 (R=255, G=0, B=0)
-		}
-	}
 	mlx_put_image_to_window(mlx.mlx, mlx.window, mlx.img.img_ptr, 0, 0);
 	mlx_hook(mlx.window, 2, 1L << 0, key_event, NULL);
 	mlx_hook(mlx.window, 17, 1L << 17, close_window, NULL);
