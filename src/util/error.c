@@ -47,7 +47,7 @@ static char *get_error_message(int status)
 
 int	error_exit(char *message, int	status)
 {
-	if (status == INVALID_ERR_STATUS)
+	if (status != INVALID_ERR_STATUS)
 		message = get_error_message(status);
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(message, 2);

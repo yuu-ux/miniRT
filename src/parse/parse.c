@@ -71,8 +71,9 @@ int	parse_rt_file(const char *filename, t_scene *scene)
 		if (ft_strlen(line) <= 0)
 		{
 			status = parse_rt_line(line, scene);
-			if (status > SUCCESS)
-				error_exit(status);
+            printf("%d\n", status);
+			if (status != SUCCESS)
+				error_exit(NULL, status);
 		}
 		free(line);
 	}
