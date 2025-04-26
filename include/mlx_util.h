@@ -17,8 +17,8 @@
 #include <scene.h>
 
 #define KEY_ESC 65307
-#define WIDTH 800
-#define HEIGHT 600
+#define WIDTH 1600
+#define HEIGHT 1200
 
 typedef struct s_img
 {
