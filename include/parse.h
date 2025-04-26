@@ -15,13 +15,25 @@
 
 # include <scene.h>
 
+typedef enum e_error_status {
+	SUCCESS = EXIT_SUCCESS,
+	FAILURE = EXIT_FAILURE,
+	ERR_DUPLICATE,
+	ERR_ARG_COUNT,
+	ERR_BRIGHTNESS_RANGE,
+	ERR_COLOR_FORMAT,
+	ERR_VECTOR_FORMAT,
+	ERR_NORMALIZE,
+	ERR_FOV_RANGE,
+} t_error_status;
+
 int	parse_rt_file(const char *filename, t_scene *scene);
 int	parse_ambient(char **elements, t_ambient *ambient);
 int	parse_camera(char **elements, t_camera *camera);
 int	parse_light(char **elements, t_light *light);
-t_object    *parse_sphere(char **elements);
-t_object    *parse_plane(char **elements);
-t_object    *parse_cylinder(char **elements);
+int         parse_sphere(char **elements, t_object **sphere);
+int         parse_plane(char **elements, t_object **plane);
+int         parse_cylinder(char **elements, t_object **cylinder);
 
 // util
 int	count_array(char **array);

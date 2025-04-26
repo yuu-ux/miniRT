@@ -65,7 +65,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (error_exit("Usage: ./miniRT scene.rt\n"));
 	if (!is_rt_extensions(argv[1]))
-		return (error_exit("Invalid extensions"));
+		return (error_exit("Invalid extensions", INVALID_ERR_));
 	init_data(&scene, &mlx);
 	parse_rt_file(argv[1], &scene);
 	for (int y = 250; y < 350; y++)

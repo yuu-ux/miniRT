@@ -21,18 +21,18 @@ int	parse_camera(char **elements, t_camera *camera)
 		|| camera->position.z != -1 || camera->orientation.x != -1
 		|| camera->orientation.y != -1 || camera->orientation.z != -1
 		|| camera->fov != -1)
-		return (EXIT_FAILURE);
+		return (ERR_DUPLICATE);
 	if (count_array(elements) != 3)
-		return (EXIT_FAILURE);
+		return (ERR_ARG_COUNT);
 	if (parse_vector(elements[0], &camera->position) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+		return (ERR_VECTOR_FORMAT);
 	if (parse_vector(elements[1], &camera->orientation) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+		return (ERR_VECTOR_FORMAT);
 	if (validate_normalize(camera->orientation) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+		return (ERR_NORMALIZE);
 	fov = ft_xatof(elements[2]);
 	if (fov < 0 || fov > 180)
-		return (EXIT_FAILURE);
+		return (ERR_FOV_RANGE);
 	camera->fov = fov;
-	return (EXIT_SUCCESS);
+	return (SUCCESS);
 }

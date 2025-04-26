@@ -22,17 +22,17 @@ int	parse_light(char **elements, t_light *light)
 		|| light->position.z != -1 || light->brightness != -1
 		|| light->color.r != -1 || light->color.g != -1
 		|| light->color.b != -1)
-		return (EXIT_FAILURE);
+		return (ERR_DUPLICATE);
 	if (count_array(elements) != 3)
-		return (EXIT_FAILURE);
+		return (ERR_ARG_COUNT);
 	if (parse_vector(elements[0], &light->position) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+		return (ERR_VECTOR_FORMAT);
 	brightness = ft_xatof(elements[1]);
 	if (brightness < 0.0 || brightness > 1.0)
-		return (EXIT_FAILURE);
+		return (ERR_BRIGHTNESS_RANGE);
 	light->brightness = brightness;
 	if (parse_color(elements[2], &light->color) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+		return (ERR_COLOR_FORMAT);
+	return (SUCCESS);
 }
 
