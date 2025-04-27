@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 15:45:50 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/04/27 17:13:40 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/04/27 19:11:21 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,12 @@ normal: planeの法線ベクトル normal vector（面に対して表方向に�
 dir: rayの進行方向ベクトル
 denominator: normal vectorとrayの方向が平行に近い = 内積が正 = rayがplaneの裏側から来ている
 */
+
+double hit_cylinder(t_vec center, double radius, t_vec origin, t_vec dir)
+{
+    // Implement cylinder intersection logic here
+    return (-1.0);
+}
 
 double hit_object(t_vec origin, t_vec dir, t_object *obj)
 {

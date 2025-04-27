@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:07:47 by yehara            #+#    #+#             */
-/*   Updated: 2025/04/27 16:30:51 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/04/27 17:43:48 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	raytracing(t_mlx *mlx)
 		{
 			ray_dir = generate_ray_dir(cam, x, y, mlx->img.width, mlx->img.height);
 			closest_object = find_closest_object(&mlx->scene, ray_origin, ray_dir, &t_closest);
-			render_pixel(&mlx->img, x, y, object);
+			render_pixel(&mlx->img, x, y, closest_object);
 			x++;
 		}
 		y++;
