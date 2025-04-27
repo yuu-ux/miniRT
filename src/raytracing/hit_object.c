@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 15:45:50 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/04/27 16:27:29 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/04/27 17:13:40 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,5 @@ double hit_object(t_vec origin, t_vec dir, t_object *obj)
 		return (hit_plane(obj->center, obj->normal, origin, dir));
 	// else if (obj->shape == CYLINDER)
 	// 	return (hit_cylinder(obj, origin, dir));
-	return (0);
+	return (-1.0);
 }
