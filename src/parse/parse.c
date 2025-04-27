@@ -14,9 +14,10 @@
 #include <scene.h>
 #include <util.h>
 
-static	int	parse_objects(char **elements, t_list **objects, int (*parse_object)(char **elements, t_object **obj))
+static int	parse_objects(char **elements, t_list **objects,
+		int (*parse_object)(char **elements, t_object **obj))
 {
-	t_object 	*content;
+	t_object	*content;
 	int			status;
 
 	content = NULL;
@@ -54,7 +55,6 @@ static int	parse_rt_line(char *line, t_scene *scene)
 	return (status);
 }
 
-
 int	parse_rt_file(const char *filename, t_scene *scene)
 {
 	int		fd;
@@ -68,14 +68,13 @@ int	parse_rt_file(const char *filename, t_scene *scene)
 		if (line == NULL)
 			break ;
 		line = ft_chomp(line);
-        if (ft_strlen(line) == 0)
-            continue ;
-        status = parse_rt_line(line, scene);
-        if (status != SUCCESS)
-            error_exit(NULL, status);
+		if (ft_strlen(line) == 0)
+			continue ;
+		status = parse_rt_line(line, scene);
+		if (status != SUCCESS)
+			error_exit(NULL, status);
 		free(line);
 	}
 	ft_xclose(fd);
 	return (EXIT_SUCCESS);
 }
-

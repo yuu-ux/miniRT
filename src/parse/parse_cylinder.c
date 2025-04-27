@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <scene.h>
 #include <parse.h>
+#include <scene.h>
 #include <util.h>
 
-int    parse_cylinder(char **elements, t_object **cylinder_ptr)
+int	parse_cylinder(char **elements, t_object **cylinder_ptr)
 {
-	t_object *cylinder;
+	t_object	*cylinder;
 
 	cylinder = ft_xmalloc(sizeof(t_object));
 	if (count_array(elements) != 5)
@@ -35,4 +35,3 @@ int    parse_cylinder(char **elements, t_object **cylinder_ptr)
 	*cylinder_ptr = cylinder;
 	return (SUCCESS);
 }
-

@@ -10,24 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <scene.h>
 #include <parse.h>
+#include <scene.h>
 #include <util.h>
 
-int    parse_sphere(char **elements, t_object **sphere_ptr)
+int	parse_sphere(char **elements, t_object **sphere_ptr)
 {
-	t_object *sphere;
+	t_object	*sphere;
 
 	sphere = ft_xmalloc(sizeof(t_object));
 	if (count_array(elements) != 3)
 		return (free(sphere), ERR_ARG_COUNT);
 	if (parse_vector(elements[0], &sphere->center) == EXIT_FAILURE)
 		return (free(sphere), ERR_VECTOR_FORMAT);
-    if (parse_color(elements[2], &sphere->color) == EXIT_FAILURE)
+	if (parse_color(elements[2], &sphere->color) == EXIT_FAILURE)
 		return (free(sphere), ERR_COLOR_FORMAT);
-    sphere->diameter = ft_xatof(elements[1]);
-    sphere->shape = SPHERE;
+	sphere->diameter = ft_xatof(elements[1]);
+	sphere->shape = SPHERE;
 	*sphere_ptr = sphere;
 	return (SUCCESS);
 }
-
