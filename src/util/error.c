@@ -28,20 +28,20 @@ int	free_double_array(char **array)
 static char	*get_error_message(int status)
 {
 	if (status == ERR_DUPLICATE)
-		return ("要素が重複してます。");
+		return ("Element is duplicated.");
 	else if (status == ERR_ARG_COUNT)
-		return ("引数の数が不適切です。");
+		return ("Different number of arguments.");
 	else if (status == ERR_BRIGHTNESS_RANGE)
-		return ("輝度が有効範囲外です。");
+		return ("Brightness is out of valid range.");
 	else if (status == ERR_COLOR_FORMAT)
-		return ("色の形式が不正です。");
+		return ("Invalid color format.");
 	else if (status == ERR_VECTOR_FORMAT)
-		return ("ベクトルの形式が不正です。");
+		return ("Invalid vector format.");
 	else if (status == ERR_NORMALIZE)
-		return ("正規化ベクトルが必要です。");
+		return ("Normalized vector is required.");
 	else if (status == ERR_FOV_RANGE)
-		return ("視野角が有効範囲外です。");
-	return ("不明なエラーが発生しました。");
+		return ("Field of view is out of valid range.");
+	return ("Unknown error occurred.");
 }
 
 int	error_exit(char *message, int status)
