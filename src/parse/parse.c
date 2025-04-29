@@ -50,8 +50,10 @@ static int	parse_rt_line(char *line, t_scene *scene)
 		status = parse_objects(elements + 1, &scene->objects, parse_plane);
 	else if (ft_strncmp(elements[0], "cy", 2) == 0)
 		status = parse_objects(elements + 1, &scene->objects, parse_cylinder);
+	else if (ft_strncmp(elements[0], "//", 2) == 0)
+		status = SUCCESS;
 	else
-		status = EXIT_FAILURE;
+		status = FAILURE;
 	return (status);
 }
 
@@ -76,5 +78,5 @@ int	parse_rt_file(const char *filename, t_scene *scene)
 		free(line);
 	}
 	ft_xclose(fd);
-	return (EXIT_SUCCESS);
+	return (SUCCESS);
 }
