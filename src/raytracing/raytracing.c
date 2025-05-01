@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:07:47 by yehara            #+#    #+#             */
-/*   Updated: 2025/04/27 17:43:48 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/01 21:34:51 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ t_vec	generate_ray_dir(t_camera *cam, int x, int y, int width, int height)
 	vertical = scale(cam->up, cam->viewport_height);
 	pixel_pos = add(
 		add(cam->lower_left_corner,
-			scale(horizontal, (double)x / (width - 1))),
-		scale(vertical, (double)y / (height - 1)));
+			scale(horizontal, (double)x / fmax(1, width - 1))),
+		scale(vertical, (double)y / fmax(1, height - 1)));
 	ray_dir = normalize(subtract(pixel_pos, cam->position));
 	return (ray_dir);
 }
