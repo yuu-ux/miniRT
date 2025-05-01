@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yehara <yehara@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 19:25:37 by yehara            #+#    #+#             */
-/*   Updated: 2025/05/01 20:49:40 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/04/04 23:00:54 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int	validate_normalize(t_vec vector)
 	// 1e-6 is 0.000001
 	// 0.999999 〜 1.000001 の範囲内に存在するかどうか
 	// ベクトルが正規化できるかのチェック
-	if (magnitude < 1 - 1e-5 || magnitude > 1 + 1e-5)
-		return (EXIT_FAILURE); // message: "Invalid vector but we will normalize it"
+	if (magnitude < 1 - 1e-6 || magnitude > 1 + 1e-6)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
