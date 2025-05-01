@@ -51,11 +51,14 @@ int	validate_normalize(t_vec vector)
 	double	magnitude;
 
 	magnitude = length(vector);
+	if (vector.x > 1 || vector.x < -1 || vector.y > 1 || vector.y < -1
+		|| vector.z > 1 || vector.z < -1)
+		return (EXIT_FAILURE);
 	// 1e-6 is 0.000001
 	// 0.999999 〜 1.000001 の範囲内に存在するかどうか
 	// ベクトルが正規化できるかのチェック
 	if (magnitude < 1 - 1e-6 || magnitude > 1 + 1e-6)
-		return (EXIT_FAILURE);
+		ft_putstr_fd("normalize failed", STDERR_FILENO);
 	return (EXIT_SUCCESS);
 }
 
