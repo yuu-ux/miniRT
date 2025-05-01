@@ -24,7 +24,7 @@ int	parse_plane(char **elements, t_object **plane_ptr)
 		return (free(plane), ERR_VECTOR_FORMAT);
 	if (parse_vector(elements[1], &plane->normal) == EXIT_FAILURE)
 		return (free(plane), ERR_VECTOR_FORMAT);
-	if (validate_normalize(plane->normal) == EXIT_FAILURE)
+	if (validate_and_set_vector(&plane->normal) == EXIT_FAILURE)
 		return (free(plane), ERR_NORMALIZE);
 	if (parse_color(elements[2], &plane->color) == EXIT_FAILURE)
 		return (free(plane), ERR_COLOR_FORMAT);
