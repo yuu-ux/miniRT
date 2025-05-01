@@ -55,10 +55,11 @@ int	validate_and_set_vector(t_vec *vector)
 		|| vector->z > 1 || vector->z < -1)
 		return (EXIT_FAILURE);
 	if (magnitude < 1 - 1e-6 || magnitude > 1 + 1e-6)
-    {
-        ft_putstr_fd("The length is not normalized, so we will normalize the vector after parsing.", STDERR_FILENO);
-        *vector = normalize(*vector);
-    }
+	{
+		ft_putstr_fd("The length is not normalized,
+			so we will normalize the vector after parsing.", STDERR_FILENO);
+		*vector = normalize(*vector);
+	}
 	return (EXIT_SUCCESS);
 }
 
