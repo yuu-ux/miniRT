@@ -20,14 +20,14 @@ int	parse_ambient(char **elements, t_ambient *ambient)
 
 	if (ambient->brightness != -1 || ambient->color.r != -1
 		|| ambient->color.g != -1 || ambient->color.b != -1)
-		return (EXIT_FAILURE);
+		return (ERR_DUPLICATE);
 	if (count_array(elements) != 2)
-		return (EXIT_FAILURE);
+		return (ERR_ARG_COUNT);
 	brightness = ft_xatof(elements[0]);
 	if (brightness < 0.0 || brightness > 1.0)
-		return (EXIT_FAILURE);
+		return (ERR_BRIGHTNESS_RANGE);
 	ambient->brightness = brightness;
 	if (parse_color(elements[1], &ambient->color) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+		return (ERR_COLOR_FORMAT);
+	return (SUCCESS);
 }

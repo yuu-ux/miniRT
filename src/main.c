@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shokosoeno <shokosoeno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:01:34 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/04/20 22:28:16 by shokosoeno       ###   ########.fr       */
+/*   Updated: 2025/05/01 17:49:47 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int	main(int argc, char **argv)
 	t_mlx	mlx;
 
 	if (argc != 2)
-		return (error_exit("Usage: ./miniRT scene.rt\n"));
+		return (error_exit("Usage: ./miniRT scene.rt\n", INVALID_ERR_STATUS));
 	if (!is_rt_extensions(argv[1]))
-		return (error_exit("Invalid extensions"));
+		return (error_exit("Invalid extensions", INVALID_ERR_STATUS));
 	init_data(&scene, &mlx);
 	parse_rt_file(argv[1], &scene);
 	setup_camera(&scene.camera, mlx.img.width, mlx.img.height);

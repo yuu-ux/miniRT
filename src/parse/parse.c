@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yehara <yehara@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 21:21:03 by yehara            #+#    #+#             */
-/*   Updated: 2025/04/07 20:15:02 by yehara           ###   ########.fr       */
+/*   Updated: 2025/05/01 17:50:36 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,20 @@
 #include <util.h>
 
 static int	parse_objects(char **elements, t_list **objects,
-		t_object *(*parse_object)(char **elements))
+		int (*parse_object)(char **elements, t_object **obj))
 {
-	void	*content;
+	t_object	*content;
+	int			status;
 
-	content = parse_object(elements);
-	if (content == NULL)
-		return (EXIT_FAILURE);
+	content = NULL;
+	status = parse_object(elements, &content);
+	if (status != SUCCESS)
+		return (status);
 	if (*objects == NULL)
 		*objects = ft_lstnew(content);
 	else
 		ft_lstadd_back(objects, ft_lstnew(content));
-	return (EXIT_SUCCESS);
+	return (SUCCESS);
 }
 
 static int	parse_rt_line(char *line, t_scene *scene)
@@ -48,8 +50,10 @@ static int	parse_rt_line(char *line, t_scene *scene)
 		status = parse_objects(elements + 1, &scene->objects, parse_plane);
 	else if (ft_strncmp(elements[0], "cy", 2) == 0)
 		status = parse_objects(elements + 1, &scene->objects, parse_cylinder);
+	else if (ft_strncmp(elements[0], "//", 2) == 0)
+		status = SUCCESS;
 	else
-		status = EXIT_FAILURE;
+		status = FAILURE;
 	return (status);
 }
 
@@ -57,6 +61,7 @@ int	parse_rt_file(const char *filename, t_scene *scene)
 {
 	int		fd;
 	char	*line;
+	int		status;
 
 	fd = ft_xopen(filename, O_RDONLY);
 	while (true)
@@ -65,10 +70,13 @@ int	parse_rt_file(const char *filename, t_scene *scene)
 		if (line == NULL)
 			break ;
 		line = ft_chomp(line);
-		if (ft_strlen(line) <= 0 || parse_rt_line(line, scene) == EXIT_FAILURE)
-			error_exit("input error");
+		if (ft_strlen(line) == 0)
+			continue ;
+		status = parse_rt_line(line, scene);
+		if (status != SUCCESS)
+			error_exit(NULL, status);
 		free(line);
 	}
 	ft_xclose(fd);
-	return (EXIT_SUCCESS);
+	return (SUCCESS);
 }

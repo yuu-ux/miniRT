@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 19:25:37 by yehara            #+#    #+#             */
-/*   Updated: 2025/04/26 17:05:13 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/01 18:07:46 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	validate_normalize(t_vec vector)
 	// 0.999999 〜 1.000001 の範囲内に存在するかどうか
 	// ベクトルが正規化できるかのチェック
 	if (magnitude < 1 - 1e-5 || magnitude > 1 + 1e-5)
-		return (EXIT_FAILURE);
+		return (EXIT_FAILURE);　 // message: "Invalid vector but we will normalize it"
 	return (EXIT_SUCCESS);
 }
 

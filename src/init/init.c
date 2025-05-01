@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yehara <yehara@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 20:04:28 by yehara            #+#    #+#             */
-/*   Updated: 2025/04/14 19:15:07 by yehara           ###   ########.fr       */
+/*   Updated: 2025/05/01 17:58:47 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx_util.h>
 #include <scene.h>
 #include <util.h>
+#include <parse.h>
 
 #define INITIAL_VALUE -1
 
@@ -43,13 +44,13 @@ static void	init_mlx(t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
 	if (mlx->mlx == NULL)
-		error_exit("mlx error");
+		error_exit("mlx error", INVALID_ERR_STATUS);
 	mlx->window = mlx_new_window(mlx->mlx, WIDTH, HEIGHT, "miniRT");
 	if (mlx->window == NULL)
-		error_exit("mlx error");
+		error_exit("mlx error", INVALID_ERR_STATUS);
 	mlx->img.img_ptr = mlx_new_image(mlx->mlx, WIDTH, HEIGHT);
 	if (mlx->img.img_ptr == NULL)
-		error_exit("mlx error");
+		error_exit("mlx error", INVALID_ERR_STATUS);
 	mlx->img.addr = mlx_get_data_addr(mlx->img.img_ptr, &mlx->img.bpp,
 			&mlx->img.line_length, &mlx->img.endian);
 	mlx->img.width = WIDTH;
