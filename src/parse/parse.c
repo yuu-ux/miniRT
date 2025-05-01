@@ -14,18 +14,21 @@
 #include <scene.h>
 #include <util.h>
 
-static	int	parse_objects(char **elements, t_list **objects, t_object *(*parse_object)(char **elements))
+static int	parse_objects(char **elements, t_list **objects,
+		int (*parse_object)(char **elements, t_object **obj))
 {
-	void 	*content;
+	t_object	*content;
+	int			status;
 
-	content = parse_object(elements);
-	if (content == NULL)
-		return (EXIT_FAILURE);
+	content = NULL;
+	status = parse_object(elements, &content);
+	if (status != SUCCESS)
+		return (status);
 	if (*objects == NULL)
 		*objects = ft_lstnew(content);
 	else
 		ft_lstadd_back(objects, ft_lstnew(content));
-	return (EXIT_SUCCESS);
+	return (SUCCESS);
 }
 
 static int	parse_rt_line(char *line, t_scene *scene)
@@ -56,16 +59,22 @@ int	parse_rt_file(const char *filename, t_scene *scene)
 {
 	int		fd;
 	char	*line;
+	int		status;
 
 	fd = ft_xopen(filename, O_RDONLY);
-	while ((line = get_next_line(fd)) != NULL)
+	while (true)
 	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
 		line = ft_chomp(line);
-		if (ft_strlen(line) <= 0 || parse_rt_line(line, scene) == EXIT_FAILURE)
-			error_exit("input error");
+		if (ft_strlen(line) == 0)
+			continue ;
+		status = parse_rt_line(line, scene);
+		if (status != SUCCESS)
+			error_exit(NULL, status);
 		free(line);
 	}
 	ft_xclose(fd);
 	return (EXIT_SUCCESS);
 }
-

@@ -66,11 +66,20 @@ declare -A test_cases=(
 make
 for file in "${!test_cases[@]}"; do
     expected_status="${test_cases[$file]}"
-    ./parse "$file" 2> /dev/null
-    if [ "$?" -eq "$expected_status" ]; then
-        echo -e "$file: \e[32mOK\e[0m"
+    ./parse "$file"
+	exit_status=$?
+    if [ "$expected_status" -eq 0 ]; then
+        if [ "$exit_status" -eq 0 ]; then
+            echo -e "$file: \e[32mOK\e[0m"
+        else
+            echo -e "$file: \e[31mNG\e[0m"
+        fi
     else
-        echo -e "$file: \e[31mNG\e[0m"
+        if [ "$exit_status" -ne 0 ]; then
+            echo -e "$file: \e[32mOK\e[0m"
+        else
+            echo -e "$file: \e[31mNG\e[0m"
+        fi
     fi
 done
 

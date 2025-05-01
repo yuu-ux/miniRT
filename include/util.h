@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 
-int	error_exit(char *message);
+#define INVALID_ERR_STATUS -1
+
+int	error_exit(char *message, int status);
 int	free_double_array(char **array);
 double	ft_xatof(char *s);
