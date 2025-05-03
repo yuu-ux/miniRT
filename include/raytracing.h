@@ -6,13 +6,14 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:06:12 by yehara            #+#    #+#             */
-/*   Updated: 2025/05/03 17:07:33 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/03 17:57:46 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYTRACING_H
 # define RAYTRACING_H
 # include <mlx_util.h>
+# define SHININESS 50.0
 
 // hit_object.c
 double	hit_sphere(t_vec center, double radius, t_vec origin, t_vec dir);
@@ -21,7 +22,7 @@ double	hit_object(t_vec ray_origin, t_vec ray_dir, t_object *object);
 double	hit_cylinder(t_vec center, double radius, t_vec normal, t_vec origin, t_vec dir);
 
 // raytracing.c
-t_vec	generate_ray_dir(t_camera *cam, int x, int y, int width, int height);
+t_vec	generate_ray_dir(t_camera *cam, int x, int y, t_img *img);
 void	raytracing(t_mlx *mlx);
 t_vec	generate_ray_direction(t_camera *cam, int x, int y, int width, int height);
 t_object	*find_closest_object(t_scene *scene, t_vec ray_origin,
@@ -33,7 +34,7 @@ void	ft_pixel_put(int x, int y, t_img *img, int color);
 int		convert_color(t_color color);
 
 // setup_camera.c
-void	setup_camera(t_camera *cam, int img_width, int img_heigt);
+void	setup_camera(t_camera *cam, int img_w, int img_h);
 
 // compute_phong.c
 t_color	compute_phong(t_scene *scene, t_object *obj, t_vec hit_point, t_vec view_dir);

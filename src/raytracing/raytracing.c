@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:07:47 by yehara            #+#    #+#             */
-/*   Updated: 2025/05/03 16:57:34 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/03 18:01:13 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 #include <mlx_util.h>
 #include <raytracing.h>
 
-// double	map(double num, double new_min, double new_max, double old_max)
-// {
-// 	return (((new_max - new_min) * num / old_max) + new_min);
-// }
-
-t_vec	generate_ray_dir(t_camera *cam, int x, int y, int width, int height)
+t_vec	generate_ray_dir(t_camera *cam, int x, int y, t_img *img)
 {
 	t_vec	pixel_pos;
 	t_vec	horizontal;
@@ -29,14 +24,15 @@ t_vec	generate_ray_dir(t_camera *cam, int x, int y, int width, int height)
 	horizontal = scale(cam->right, cam->viewport_width);
 	vertical = scale(cam->up, cam->viewport_height);
 	pixel_pos = add(
-		add(cam->lower_left_corner,
-			scale(horizontal, (double)x / fmax(1, width - 1))),
-		scale(vertical, (double)y / fmax(1, height - 1)));
+			add(cam->lower_left_corner,
+				scale(horizontal, (double)x / fmax(1, img->width - 1))),
+			scale(vertical, (double)y / fmax(1, img->height - 1)));
 	ray_dir = normalize(subtract(pixel_pos, cam->position));
 	return (ray_dir);
 }
 
-t_object	*find_closest_object(t_scene *scene, t_vec ray_origin, t_vec ray_dir, double *t_closest)
+t_object	*find_closest_object(t_scene *scene,
+	t_vec ray_origin, t_vec ray_dir, double *t_closest)
 {
 	t_list		*obj_list;
 	t_object	*closest_object;
@@ -60,35 +56,6 @@ t_object	*find_closest_object(t_scene *scene, t_vec ray_origin, t_vec ray_dir, d
 	return (closest_object);
 }
 
-// void	raytracing(t_mlx *mlx)
-// {
-// 	t_vec		ray_dir;
-// 	t_vec		ray_origin;
-// 	t_object	*object;
-// 	int			x;
-// 	int			y;
-// 	t_camera	*cam;
-// 	t_object	*closest_object;
-// 	double		t_closest;
-
-// 	cam = &mlx->scene.camera;
-// 	ray_origin = cam->position;
-// 	object = (t_object *)mlx->scene.objects->content;
-// 	y = 0;
-// 	while (y < mlx->img.height)
-// 	{
-// 		x = 0;
-// 		while (x < mlx->img.width)
-// 		{
-// 			ray_dir = generate_ray_dir(cam, x, y, mlx->img.width, mlx->img.height);
-// 			closest_object = find_closest_object(&mlx->scene, ray_origin, ray_dir, &t_closest);
-// 			render_pixel(&mlx->img, x, y, closest_object);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
-
 void	raytracing(t_mlx *mlx)
 {
 	t_vec		ray_dir;
@@ -96,7 +63,8 @@ void	raytracing(t_mlx *mlx)
 	t_object	*closest_object;
 	t_color		color;
 	t_camera	*cam = &mlx->scene.camera;
-	int			x, y;
+	int			x;
+	int			y;
 	double		t_closest;
 	t_vec		hit_point;
 
@@ -107,8 +75,9 @@ void	raytracing(t_mlx *mlx)
 		x = 0;
 		while (x < mlx->img.width)
 		{
-			ray_dir = generate_ray_dir(cam, x, y, mlx->img.width, mlx->img.height);
-			closest_object = find_closest_object(&mlx->scene, ray_origin, ray_dir, &t_closest);
+			ray_dir = generate_ray_dir(cam, x, y, &mlx->img);
+			closest_object = find_closest_object(&mlx->scene,
+					ray_origin, ray_dir, &t_closest);
 			if (closest_object)
 			{
 				hit_point = add(ray_origin, scale(ray_dir, t_closest));
@@ -133,24 +102,19 @@ void	raytracing(t_mlx *mlx)
 // 	double		t;
 // 	t_object	*obj;
 // 	t_list		*list;
-
 // 	// 光の方向を正規化（交点から光源への方向）
 // 	light_dir = normalize(subtract(light->position, hit_point));
-
 // 	// 自己交差を避けるために、交点から少しだけ前に出す
 // 	shadow_origin = add(hit_point, scale(light_dir, 1e-4));
-
 // 	// 全オブジェクトに対してシャドウレイとの衝突判定
 // 	list = scene->objects;
 // 	while (list)
 // 	{
 // 		obj = (t_object *)list->content;
 // 		t = hit_object(shadow_origin, light_dir, obj);
-
 // 		// 衝突があって、光源までの距離より短ければ ⇒ 光が遮られている
 // 		if (t > 0 && t < length(subtract(light->position, hit_point)))
 // 			return true;
-
 // 		list = list->next;
 // 	}
 // 	return false;
