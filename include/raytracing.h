@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:06:12 by yehara            #+#    #+#             */
-/*   Updated: 2025/05/01 21:41:54 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/03 17:07:33 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,20 @@ t_object	*find_closest_object(t_scene *scene, t_vec ray_origin,
 
 // render_utils.c
 void	render_pixel(t_img *img, int x, int y, t_object *object);
+void	ft_pixel_put(int x, int y, t_img *img, int color);
 int		convert_color(t_color color);
 
 // setup_camera.c
 void	setup_camera(t_camera *cam, int img_width, int img_heigt);
+
+// compute_phong.c
+t_color	compute_phong(t_scene *scene, t_object *obj, t_vec hit_point, t_vec view_dir);
+t_color	scale_color(t_color c, double factor);
+t_vec	reflect(t_vec vector, t_vec normal);
+bool	is_in_shadow(t_vec hit_point, t_light *light, t_scene *scene);
+
+// get_normal.c
+t_vec	get_normal(t_object *obj, t_vec hit_point);
+t_vec	get_cylinder_normal(t_object *obj, t_vec hit_point);
 
 #endif

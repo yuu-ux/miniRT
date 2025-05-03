@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_uitls.c                                     :+:      :+:    :+:   */
+/*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:21:04 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/04/27 16:27:34 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/03 16:57:57 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <mlx_util.h>
 #include <raytracing.h>
 
-static void	ft_pixel_put(int x, int y, t_img *img, int color)
+void	ft_pixel_put(int x, int y, t_img *img, int color)
 {
 	size_t	offset;
 

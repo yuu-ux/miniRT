@@ -6,7 +6,7 @@
 #    By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 19:41:00 by yehara            #+#    #+#              #
-#    Updated: 2025/04/27 16:22:46 by ssoeno           ###   ########.fr        #
+#    Updated: 2025/05/03 16:45:37 by ssoeno           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,9 @@ RAYTRACING_SRCS = raytracing.c \
 				  vector_products.c \
 				  setup_camera.c \
 				  hit_object.c \
-				  render_utils.c
+				  render_utils.c \
+				  compute_phong.c \
+				  get_normal.c
 # util
 UTIL_SRCS = error.c \
 			ft_xatof.c
