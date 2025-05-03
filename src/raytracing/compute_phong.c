@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 17:26:19 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/05/03 18:05:30 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/03 18:47:47 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,16 @@ t_vec	reflect(t_vec l, t_vec n)
 t_color	compute_phong(t_scene *scene, t_object *obj,
 		t_vec hit_point, t_vec view_dir)
 {
-	t_color	color;
-	t_vec	normal;
-	t_vec	light_dir;
-	t_vec	reflected_dir;
-	double	diffuse;
-	double	specular;
+	t_color		color;
+	t_phong_params	p;
+	double		diffuse;
+	double		specular;
 
-	normal = get_normal(obj, hit_point);
-	light_dir = normalize(subtract(scene->light.position, hit_point));
-	diffuse = fmax(dot_product(normal, light_dir), 0.0);
-	reflected_dir = reflect(scale(light_dir, -1.0), normal);
-	specular = pow(fmax(dot_product(reflected_dir,
+	p.normal = get_normal(obj, hit_point);
+	p.light_dir = normalize(subtract(scene->light.position, hit_point));
+	diffuse = fmax(dot_product(p.normal, p.light_dir), 0.0);
+	p.reflected_dir = reflect(scale(p.light_dir, -1.0), p.normal);
+	specular = pow(fmax(dot_product(p.reflected_dir,
 					normalize(scale(view_dir, -1))), 0.0), SHININESS);
 	color.r = fmin(scene->ambient.brightness * obj->color.r
 			+ diffuse * scene->light.color.r * (obj->color.r / 255.0)

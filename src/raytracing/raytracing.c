@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:07:47 by yehara            #+#    #+#             */
-/*   Updated: 2025/05/03 18:01:13 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/03 18:58:02 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,39 +56,85 @@ t_object	*find_closest_object(t_scene *scene,
 	return (closest_object);
 }
 
-void	raytracing(t_mlx *mlx)
+// void	raytracing(t_mlx *mlx)
+// {
+// 	t_vec		ray_dir;
+// 	t_vec		ray_origin;
+// 	t_object	*closest_object;
+// 	t_color		color;
+// 	t_camera	*cam = &mlx->scene.camera;
+// 	int			x;
+// 	int			y;
+// 	double		t_closest;
+// 	t_vec		hit_point;
+
+// 	ray_origin = cam->position;
+// 	y = 0;
+// 	while (y < mlx->img.height)
+// 	{
+// 		x = 0;
+// 		while (x < mlx->img.width)
+// 		{
+// 			ray_dir = generate_ray_dir(cam, x, y, &mlx->img);
+// 			closest_object = find_closest_object(&mlx->scene,
+// 					ray_origin, ray_dir, &t_closest);
+// 			if (closest_object)
+// 			{
+// 				hit_point = add(ray_origin, scale(ray_dir, t_closest));
+// 				// if (is_in_shadow(hit_point, &mlx->scene.light, &mlx->scene))
+// 				// 	color = scale_color(closest_object->color, mlx->scene.ambient.brightness);
+// 				// else
+// 				color = compute_phong(&mlx->scene, closest_object, hit_point, ray_dir);
+// 			}
+// 			else
+// 				color = (t_color){0, 0, 0}; // 背景：黒
+// 			ft_pixel_put(x, y, &mlx->img, convert_color(color));
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
+
+static t_color	trace_pixel(t_mlx *mlx, int x, int y)
 {
 	t_vec		ray_dir;
 	t_vec		ray_origin;
 	t_object	*closest_object;
-	t_color		color;
-	t_camera	*cam = &mlx->scene.camera;
-	int			x;
-	int			y;
-	double		t_closest;
 	t_vec		hit_point;
+	double		t_closest;
 
-	ray_origin = cam->position;
+	ray_origin = mlx->scene.camera.position;
+	ray_dir = generate_ray_dir(&mlx->scene.camera, x, y, &mlx->img);
+	closest_object = find_closest_object(&mlx->scene,
+			ray_origin, ray_dir, &t_closest);
+	if (closest_object)
+	{
+		hit_point = add(ray_origin, scale(ray_dir, t_closest));
+		return (compute_phong(&mlx->scene, closest_object, hit_point, ray_dir));
+	}
+	else
+		return ((t_color){0, 0, 0});
+}
+
+void	raytracing(t_mlx *mlx)
+{
+	int		x;
+	int		y;
+	t_color	color;
+
 	y = 0;
 	while (y < mlx->img.height)
 	{
 		x = 0;
 		while (x < mlx->img.width)
 		{
-			ray_dir = generate_ray_dir(cam, x, y, &mlx->img);
-			closest_object = find_closest_object(&mlx->scene,
-					ray_origin, ray_dir, &t_closest);
-			if (closest_object)
+			x = 0;
+			while (x < mlx->img.width)
 			{
-				hit_point = add(ray_origin, scale(ray_dir, t_closest));
-				// if (is_in_shadow(hit_point, &mlx->scene.light, &mlx->scene))
-				// 	color = scale_color(closest_object->color, mlx->scene.ambient.brightness);
-				// else
-				color = compute_phong(&mlx->scene, closest_object, hit_point, ray_dir);
+				color = trace_pixel(mlx, x, y);
+				ft_pixel_put(x, y, &mlx->img, convert_color(color));
+				x++;
 			}
-			else
-				color = (t_color){0, 0, 0}; // 背景：黒
-			ft_pixel_put(x, y, &mlx->img, convert_color(color));
 			x++;
 		}
 		y++;
