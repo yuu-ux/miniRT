@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 20:25:41 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/05/03 18:04:08 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/03 18:14:25 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_vec	get_cylinder_normal(t_object *obj, t_vec hit_point)
 }
 // oc - projected is perpendicular to the axis of the cylinder
 
-t_vec	et_normal(t_object *obj, t_vec hit_point)
+t_vec	get_normal(t_object *obj, t_vec hit_point)
 {
 	t_vec	result;
 
