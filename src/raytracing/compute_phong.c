@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 17:26:19 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/05/03 18:47:47 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/03 19:07:31 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ t_vec	reflect(t_vec l, t_vec n)
 t_color	compute_phong(t_scene *scene, t_object *obj,
 		t_vec hit_point, t_vec view_dir)
 {
-	t_color		color;
-	t_phong_params	p;
-	double		diffuse;
-	double		specular;
+	t_color	color;
+	t_phong	p;
+	double	diffuse;
+	double	specular;
 
 	p.normal = get_normal(obj, hit_point);
 	p.light_dir = normalize(subtract(scene->light.position, hit_point));

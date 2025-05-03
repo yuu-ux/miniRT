@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:06:12 by yehara            #+#    #+#             */
-/*   Updated: 2025/05/03 18:57:58 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/03 19:07:40 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct s_phong_params
 	t_vec	normal;
 	t_vec	light_dir;
 	t_vec	reflected_dir;
-}			t_phong_params;
+}			t_phong;
 
 // hit_object.c
 double	hit_sphere(t_vec center, double radius, t_vec origin, t_vec dir);
