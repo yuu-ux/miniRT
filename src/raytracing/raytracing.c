@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:07:47 by yehara            #+#    #+#             */
-/*   Updated: 2025/05/04 12:24:21 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/04 17:13:17 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_object	*find_closest_object(t_scene *scene,
 	return (closest_object);
 }
 
-bool is_in_shadow(t_vec hit_point, t_light *light, t_scene *scene)
+bool	is_in_shadow(t_vec hit_point, t_light *light, t_scene *scene)
 {
 	t_vec		light_dir;
 	t_vec		shadow_origin;
@@ -72,31 +72,32 @@ bool is_in_shadow(t_vec hit_point, t_light *light, t_scene *scene)
 		obj = (t_object *)list->content;
 		t = hit_object(shadow_origin, light_dir, obj);
 		if (t > 0 && t < length(subtract(light->position, hit_point)))
-			return true;
+			return (true);
 		list = list->next;
 	}
-	return false;
+	return (false);
 }
 
 static t_color	trace_pixel(t_mlx *mlx, int x, int y)
 {
 	t_vec		ray_dir;
 	t_vec		ray_origin;
-	t_object	*closest_object;
+	t_object	*closest_obj;
 	t_vec		hit_point;
 	double		t_closest;
 
 	ray_origin = mlx->scene.camera.position;
 	ray_dir = generate_ray_dir(&mlx->scene.camera, x, y, &mlx->img);
-	closest_object = find_closest_object(&mlx->scene,
+	closest_obj = find_closest_object(&mlx->scene,
 			ray_origin, ray_dir, &t_closest);
-	if (closest_object)
+	if (closest_obj)
 	{
 		hit_point = add(ray_origin, scale(ray_dir, t_closest));
 		if (is_in_shadow(hit_point, &mlx->scene.light, &mlx->scene))
-			return (scale_color(closest_object->color, mlx->scene.ambient.brightness));
+			return (scale_color(closest_obj->color,
+					mlx->scene.ambient.brightness));
 		else
-			return (compute_phong(&mlx->scene, closest_object, hit_point, ray_dir));
+			return (compute_phong(&mlx->scene, closest_obj, hit_point, ray_dir));
 	}
 	else
 		return ((t_color){0, 0, 0});

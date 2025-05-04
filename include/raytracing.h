@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:06:12 by yehara            #+#    #+#             */
-/*   Updated: 2025/05/04 15:06:35 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/04 16:38:17 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define EPSILON 1e-6
 # define HIT_MAX 1e30
 
+// structures for computing
 typedef struct s_phong_params
 {
 	t_vec	normal;
@@ -25,8 +26,8 @@ typedef struct s_phong_params
 }			t_phong;
 
 typedef struct s_cyl_hit {
-	t_vec	top_disk_center;
-	t_vec	bottom_disk_center;
+	t_vec	top_center;
+	t_vec	bottom_center;
 	double	side;
 	double	top;
 	double	bottom;
@@ -39,11 +40,20 @@ typedef struct s_quadratic {
 	double	c;
 }			t_quadratic;
 
+typedef struct s_cyl_side {
+	t_vec ray_perp;
+	t_vec origin_perp;
+	t_vec hit_point;
+	t_quadratic q;
+	double proj_len;
+}			t_cyl_side;
+
 // hit_object.c
 double	hit_sphere(t_vec center, double radius, t_vec origin, t_vec dir);
 double	hit_plane(t_vec point_on_plane, t_vec normal, t_vec origin, t_vec dir);
 double	hit_object(t_vec ray_origin, t_vec ray_dir, t_object *object);
-double	hit_cylinder(t_vec center, double radius, t_vec normal, t_vec origin, t_vec dir);
+double	hit_cylinder(t_object *obj, t_vec origin, t_vec dir);
+double	solve_quadratic(t_quadratic q);
 
 // raytracing.c
 t_vec	generate_ray_dir(t_camera *cam, int x, int y, t_img *img);
