@@ -54,6 +54,7 @@ static int	parse_rt_line(char *line, t_scene *scene)
 		status = SUCCESS;
 	else
 		status = FAILURE;
+	free_double_array(elements);
 	return (status);
 }
 

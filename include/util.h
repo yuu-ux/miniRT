@@ -14,8 +14,11 @@
 # define UTIL_H
 # define INVALID_ERR_STATUS -1
 
+# include <mlx_util.h>
+
 int		error_exit(char *message, int status);
 int		free_double_array(char **array);
 double	ft_xatof(char *s);
+void	free_mlx(t_mlx *mlx);
 
 #endif

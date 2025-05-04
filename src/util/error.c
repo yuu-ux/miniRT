@@ -13,6 +13,7 @@
 #include <parse.h>
 #include <scene.h>
 #include <util.h>
+#include <mlx_util.h>
 
 int	free_double_array(char **array)
 {
@@ -53,3 +54,15 @@ int	error_exit(char *message, int status)
 	ft_putstr_fd("\n", 2);
 	exit(EXIT_FAILURE);
 }
+
+void	free_mlx(t_mlx *mlx)
+{
+	if (mlx->window)
+		mlx_destroy_window(mlx->mlx, mlx->window);
+	if (mlx->mlx)
+	{
+		mlx_destroy_display(mlx->mlx);
+		free(mlx->mlx);
+	}
+}
+

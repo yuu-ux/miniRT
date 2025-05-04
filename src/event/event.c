@@ -13,20 +13,21 @@
 #include <scene.h>
 #include <mlx_util.h>
 #include <raytracing.h>
+#include <util.h>
 
-int	key_event(int keycode, void *param)
+int	key_event(int keycode, void *mlx)
 {
-	(void)param;
 	if (keycode == KEY_ESC)
 	{
+		free_mlx(mlx);
 		exit(EXIT_SUCCESS);
 	}
 	return (EXIT_SUCCESS);
 }
 
-int	close_window(void *param)
+int	close_window(void *mlx)
 {
-	(void)param;
+	free_mlx(mlx);
 	exit(EXIT_SUCCESS);
 }
 

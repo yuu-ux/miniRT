@@ -43,8 +43,8 @@ static void	init_scene(t_scene *scene)
 static void	init_mlx(t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
-	// if (mlx->mlx == NULL)
-	// 	error_exit("mlx error", INVALID_ERR_STATUS);
+	if (mlx->mlx == NULL)
+		error_exit("mlx error", INVALID_ERR_STATUS);
 	mlx->window = mlx_new_window(mlx->mlx, WIDTH, HEIGHT, "miniRT");
 	if (mlx->window == NULL)
 		error_exit("mlx error", INVALID_ERR_STATUS);
