@@ -31,7 +31,7 @@ int	parse_camera(char **elements, t_camera *camera)
 	if (validate_and_set_vector(&camera->orientation) == EXIT_FAILURE)
 		return (ERR_NORMALIZE);
 	fov = ft_xatof(elements[2]);
-	if (fov == -1)
+	if (fov == ERR_ATOF_NUM)
 		return (ERR_ATOF);
 	if (fov < 0 || fov > 180)
 		return (ERR_FOV_RANGE);

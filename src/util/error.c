@@ -55,9 +55,11 @@ int	error_exit(char *message, int status, t_mlx *mlx)
 	ft_putstr_fd(message, 2);
 	ft_putstr_fd("\n", 2);
 	if (mlx)
+	{
 		free_mlx(mlx);
-	if (mlx->scene)
-		free_objects(mlx->scene->objects);
+		if (mlx->scene)
+			free_objects(mlx->scene->objects);
+	}
 	exit(EXIT_FAILURE);
 }
 

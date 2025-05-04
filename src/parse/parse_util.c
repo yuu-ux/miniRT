@@ -12,6 +12,7 @@
 
 #include <scene.h>
 #include <util.h>
+#include <parse.h>
 
 int	count_array(char **array)
 {
@@ -76,7 +77,7 @@ int	parse_vector(char *elements, t_vec *vector)
 	x = ft_xatof(vectors[0]);
 	y = ft_xatof(vectors[1]);
 	z = ft_xatof(vectors[2]);
-	if (x == -1 || y == -1 || z == -1)
+	if (x == ERR_ATOF_NUM || y == ERR_ATOF_NUM || z == ERR_ATOF_NUM)
 		return (free_double_array(vectors));
 	vector->x = x;
 	vector->y = y;

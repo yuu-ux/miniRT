@@ -15,6 +15,7 @@
 
 # include <scene.h>
 # include <mlx_util.h>
+# define ERR_ATOF_NUM -2
 
 typedef enum e_error_status
 {
