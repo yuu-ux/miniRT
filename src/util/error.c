@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <mlx_util.h>
 #include <parse.h>
 #include <scene.h>
 #include <util.h>
-#include <mlx_util.h>
 
 int	free_double_array(char **array)
 {
@@ -70,10 +70,9 @@ void	free_mlx(t_mlx *mlx)
 	}
 }
 
-
-void	free_objects(t_list	*objects)
+void	free_objects(t_list *objects)
 {
-	t_list *temp;
+	t_list	*temp;
 
 	while (objects)
 	{
