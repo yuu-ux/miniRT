@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:06:12 by yehara            #+#    #+#             */
-/*   Updated: 2025/05/04 12:22:52 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/04 15:06:35 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define RAYTRACING_H
 # include <mlx_util.h>
 # define SHININESS 10.0
+# define EPSILON 1e-6
+# define HIT_MAX 1e30
 
 typedef struct s_phong_params
 {
@@ -21,6 +23,21 @@ typedef struct s_phong_params
 	t_vec	light_dir;
 	t_vec	reflected_dir;
 }			t_phong;
+
+typedef struct s_cyl_hit {
+	t_vec	top_disk_center;
+	t_vec	bottom_disk_center;
+	double	side;
+	double	top;
+	double	bottom;
+	double  t_min;
+}			t_cyl_hit;
+
+typedef struct s_quadratic {
+	double	a;
+	double	b;
+	double	c;
+}			t_quadratic;
 
 // hit_object.c
 double	hit_sphere(t_vec center, double radius, t_vec origin, t_vec dir);
