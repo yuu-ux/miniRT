@@ -20,5 +20,6 @@ int		error_exit(char *message, int status);
 int		free_double_array(char **array);
 double	ft_xatof(char *s);
 void	free_mlx(t_mlx *mlx);
+void	free_objects(t_list	*objects);
 
 #endif

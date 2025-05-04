@@ -57,7 +57,7 @@ int	main(int argc, char **argv)
 	raytracing(&mlx);
 	mlx_put_image_to_window(mlx.mlx, mlx.window, mlx.img.img_ptr, 0, 0);
 	mlx_hook(mlx.window, 2, 1L << 0, key_event, &mlx);
-	mlx_hook(mlx.window, 17, 1L << 17, close_window, NULL);
+	mlx_hook(mlx.window, 17, 1L << 17, close_window, &mlx);
 	// mlx_loop_hook(mlx.mlx, &main_loop, &mlx);
 	mlx_loop(mlx.mlx);
 	return (0);

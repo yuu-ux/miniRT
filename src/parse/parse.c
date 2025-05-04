@@ -72,7 +72,10 @@ int	parse_rt_file(const char *filename, t_scene *scene)
 			break ;
 		line = ft_chomp(line);
 		if (ft_strlen(line) == 0)
+		{
+			free(line);
 			continue ;
+		}
 		status = parse_rt_line(line, scene);
 		if (status != SUCCESS)
 			error_exit(NULL, status);

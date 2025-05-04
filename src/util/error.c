@@ -66,3 +66,16 @@ void	free_mlx(t_mlx *mlx)
 	}
 }
 
+
+void	free_objects(t_list	*objects)
+{
+	t_list *temp;
+
+	while (objects)
+	{
+		temp = objects->next;
+		free(objects->content);
+		free(objects);
+		objects = temp;
+	}
+}

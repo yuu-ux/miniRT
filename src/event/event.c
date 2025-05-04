@@ -17,9 +17,13 @@
 
 int	key_event(int keycode, void *mlx)
 {
+	t_mlx	*_mlx;
+
+	_mlx = (t_mlx *)mlx;
 	if (keycode == KEY_ESC)
 	{
-		free_mlx(mlx);
+		free_mlx(_mlx);
+		free_objects(_mlx->scene.objects);
 		exit(EXIT_SUCCESS);
 	}
 	return (EXIT_SUCCESS);
@@ -27,7 +31,11 @@ int	key_event(int keycode, void *mlx)
 
 int	close_window(void *mlx)
 {
-	free_mlx(mlx);
+	t_mlx	*_mlx;
+
+	_mlx = (t_mlx *)mlx;
+	free_mlx(_mlx);
+	free_objects(_mlx->scene.objects);
 	exit(EXIT_SUCCESS);
 }
 
