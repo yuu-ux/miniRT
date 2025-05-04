@@ -18,6 +18,8 @@ void	ft_pixel_put(int x, int y, t_img *img, int color)
 {
 	size_t	offset;
 
+	x = WIDTH - x;
+	y = HEIGHT - y;
 	offset = (y * img->line_length) + x * (img->bpp / 8);
 	*(unsigned int *)(img->addr + offset) = color;
 }
@@ -26,7 +28,7 @@ void	ft_pixel_put(int x, int y, t_img *img, int color)
 // 	if (object)
 // 		ft_pixel_put(x, y, img, convert_color(object->color));
 // 	else
-// 		ft_pixel_put(x, y, img, 0x000000); 
+// 		ft_pixel_put(x, y, img, 0x000000);
 // }
 
 int	convert_color(t_color color)
