@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute_phong.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shokosoeno <shokosoeno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 17:26:19 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/05/03 19:07:31 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/04 08:13:15 by shokosoeno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_vec	reflect(t_vec l, t_vec n)
 // R = 2N(L·N) - L
 
 t_color	compute_phong(t_scene *scene, t_object *obj,
-		t_vec hit_point, t_vec view_dir)
+		t_vec hit_point, t_vec ray_dir)
 {
 	t_color	color;
 	t_phong	p;
@@ -45,7 +45,7 @@ t_color	compute_phong(t_scene *scene, t_object *obj,
 	diffuse = fmax(dot_product(p.normal, p.light_dir), 0.0);
 	p.reflected_dir = reflect(scale(p.light_dir, -1.0), p.normal);
 	specular = pow(fmax(dot_product(p.reflected_dir,
-					normalize(scale(view_dir, -1))), 0.0), SHININESS);
+					normalize(ray_dir)), 0.0), SHININESS);
 	color.r = fmin(scene->ambient.brightness * obj->color.r
 			+ diffuse * scene->light.color.r * (obj->color.r / 255.0)
 			+ specular * scene->light.color.r, 255);

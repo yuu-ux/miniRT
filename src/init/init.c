@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shokosoeno <shokosoeno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 20:04:28 by yehara            #+#    #+#             */
-/*   Updated: 2025/05/01 17:58:47 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/04 07:48:40 by shokosoeno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ static void	init_scene(t_scene *scene)
 static void	init_mlx(t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
-	if (mlx->mlx == NULL)
-		error_exit("mlx error", INVALID_ERR_STATUS);
+	// if (mlx->mlx == NULL)
+	// 	error_exit("mlx error", INVALID_ERR_STATUS);
 	mlx->window = mlx_new_window(mlx->mlx, WIDTH, HEIGHT, "miniRT");
 	if (mlx->window == NULL)
 		error_exit("mlx error", INVALID_ERR_STATUS);
