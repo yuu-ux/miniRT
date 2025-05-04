@@ -46,16 +46,21 @@ int	parse_color(char *elements, t_color *color)
 	return (EXIT_SUCCESS);
 }
 
-int	validate_normalize(t_vec vector)
+int	validate_and_set_vector(t_vec *vector)
 {
 	double	magnitude;
 
-	magnitude = length(vector);
-	// 1e-6 is 0.000001
-	// 0.999999 〜 1.000001 の範囲内に存在するかどうか
-	// ベクトルが正規化できるかのチェック
-	if (magnitude < 1 - 1e-6 || magnitude > 1 + 1e-6)
+	magnitude = length(*vector);
+	if (vector->x > 1 || vector->x < -1 || vector->y > 1 || vector->y < -1
+		|| vector->z > 1 || vector->z < -1)
 		return (EXIT_FAILURE);
+	if (magnitude < 1 - 1e-6 || magnitude > 1 + 1e-6)
+	{
+		ft_putstr_fd("The length is not normalized, \
+			so we will normalize the vector after parsing.",
+						STDERR_FILENO);
+		*vector = normalize(*vector);
+	}
 	return (EXIT_SUCCESS);
 }
 
