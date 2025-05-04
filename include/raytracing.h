@@ -6,14 +6,14 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:06:12 by yehara            #+#    #+#             */
-/*   Updated: 2025/05/03 19:07:40 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/04 12:22:52 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYTRACING_H
 # define RAYTRACING_H
 # include <mlx_util.h>
-# define SHININESS 50.0
+# define SHININESS 10.0
 
 typedef struct s_phong_params
 {

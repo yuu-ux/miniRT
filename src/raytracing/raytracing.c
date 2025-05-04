@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:07:47 by yehara            #+#    #+#             */
-/*   Updated: 2025/05/03 18:58:02 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/04 12:24:21 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,44 +56,27 @@ t_object	*find_closest_object(t_scene *scene,
 	return (closest_object);
 }
 
-// void	raytracing(t_mlx *mlx)
-// {
-// 	t_vec		ray_dir;
-// 	t_vec		ray_origin;
-// 	t_object	*closest_object;
-// 	t_color		color;
-// 	t_camera	*cam = &mlx->scene.camera;
-// 	int			x;
-// 	int			y;
-// 	double		t_closest;
-// 	t_vec		hit_point;
+bool is_in_shadow(t_vec hit_point, t_light *light, t_scene *scene)
+{
+	t_vec		light_dir;
+	t_vec		shadow_origin;
+	double		t;
+	t_object	*obj;
+	t_list		*list;
 
-// 	ray_origin = cam->position;
-// 	y = 0;
-// 	while (y < mlx->img.height)
-// 	{
-// 		x = 0;
-// 		while (x < mlx->img.width)
-// 		{
-// 			ray_dir = generate_ray_dir(cam, x, y, &mlx->img);
-// 			closest_object = find_closest_object(&mlx->scene,
-// 					ray_origin, ray_dir, &t_closest);
-// 			if (closest_object)
-// 			{
-// 				hit_point = add(ray_origin, scale(ray_dir, t_closest));
-// 				// if (is_in_shadow(hit_point, &mlx->scene.light, &mlx->scene))
-// 				// 	color = scale_color(closest_object->color, mlx->scene.ambient.brightness);
-// 				// else
-// 				color = compute_phong(&mlx->scene, closest_object, hit_point, ray_dir);
-// 			}
-// 			else
-// 				color = (t_color){0, 0, 0}; // 背景：黒
-// 			ft_pixel_put(x, y, &mlx->img, convert_color(color));
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
+	light_dir = normalize(subtract(light->position, hit_point));
+	shadow_origin = add(hit_point, scale(light_dir, 1e-4));
+	list = scene->objects;
+	while (list)
+	{
+		obj = (t_object *)list->content;
+		t = hit_object(shadow_origin, light_dir, obj);
+		if (t > 0 && t < length(subtract(light->position, hit_point)))
+			return true;
+		list = list->next;
+	}
+	return false;
+}
 
 static t_color	trace_pixel(t_mlx *mlx, int x, int y)
 {
@@ -110,7 +93,10 @@ static t_color	trace_pixel(t_mlx *mlx, int x, int y)
 	if (closest_object)
 	{
 		hit_point = add(ray_origin, scale(ray_dir, t_closest));
-		return (compute_phong(&mlx->scene, closest_object, hit_point, ray_dir));
+		if (is_in_shadow(hit_point, &mlx->scene.light, &mlx->scene))
+			return (scale_color(closest_object->color, mlx->scene.ambient.brightness));
+		else
+			return (compute_phong(&mlx->scene, closest_object, hit_point, ray_dir));
 	}
 	else
 		return ((t_color){0, 0, 0});
@@ -140,28 +126,3 @@ void	raytracing(t_mlx *mlx)
 		y++;
 	}
 }
-
-// bool is_in_shadow(t_vec hit_point, t_light *light, t_scene *scene)
-// {
-// 	t_vec		light_dir;
-// 	t_vec		shadow_origin;
-// 	double		t;
-// 	t_object	*obj;
-// 	t_list		*list;
-// 	// 光の方向を正規化（交点から光源への方向）
-// 	light_dir = normalize(subtract(light->position, hit_point));
-// 	// 自己交差を避けるために、交点から少しだけ前に出す
-// 	shadow_origin = add(hit_point, scale(light_dir, 1e-4));
-// 	// 全オブジェクトに対してシャドウレイとの衝突判定
-// 	list = scene->objects;
-// 	while (list)
-// 	{
-// 		obj = (t_object *)list->content;
-// 		t = hit_object(shadow_origin, light_dir, obj);
-// 		// 衝突があって、光源までの距離より短ければ ⇒ 光が遮られている
-// 		if (t > 0 && t < length(subtract(light->position, hit_point)))
-// 			return true;
-// 		list = list->next;
-// 	}
-// 	return false;
-// }
