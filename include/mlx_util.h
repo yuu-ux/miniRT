@@ -38,7 +38,7 @@ typedef struct s_mlx
 	int		width;
 	int		height;
 	t_img	img;
-	t_scene	scene;
+	t_scene	*scene;
 }			t_mlx;
 
 int			key_event(int keycode, void *param);

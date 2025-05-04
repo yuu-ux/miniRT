@@ -44,17 +44,18 @@ static void	init_mlx(t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
 	if (mlx->mlx == NULL)
-		error_exit("mlx error", INVALID_ERR_STATUS);
+		error_exit("mlx error", EXIT_FAILURE, NULL);
 	mlx->window = mlx_new_window(mlx->mlx, WIDTH, HEIGHT, "miniRT");
 	if (mlx->window == NULL)
-		error_exit("mlx error", INVALID_ERR_STATUS);
+		error_exit("mlx error", EXIT_FAILURE, mlx);
 	mlx->img.img_ptr = mlx_new_image(mlx->mlx, WIDTH, HEIGHT);
 	if (mlx->img.img_ptr == NULL)
-		error_exit("mlx error", INVALID_ERR_STATUS);
+		error_exit("mlx error", EXIT_FAILURE, mlx);
 	mlx->img.addr = mlx_get_data_addr(mlx->img.img_ptr, &mlx->img.bpp,
 			&mlx->img.line_length, &mlx->img.endian);
 	mlx->img.width = WIDTH;
 	mlx->img.height = HEIGHT;
+	mlx->scene = NULL;
 }
 
 void	init_data(t_scene *scene, t_mlx *mlx)

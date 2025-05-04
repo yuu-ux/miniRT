@@ -16,7 +16,7 @@
 
 # include <mlx_util.h>
 
-int		error_exit(char *message, int status);
+int	error_exit(char *message, int status, t_mlx *mlx);
 int		free_double_array(char **array);
 double	ft_xatof(char *s);
 void	free_mlx(t_mlx *mlx);

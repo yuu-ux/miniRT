@@ -40,7 +40,7 @@ double	ft_xatof(char *s)
 	double	res;
 
 	if (!is_conversion_float(s))
-		error_exit("atof convert error", INVALID_ERR_STATUS);
+		error_exit("atof convert error", EXIT_FAILURE, NULL);
 	res = ft_atof(s);
 	return (res);
 }
