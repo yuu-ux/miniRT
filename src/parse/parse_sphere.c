@@ -26,6 +26,8 @@ int	parse_sphere(char **elements, t_object **sphere_ptr)
 	if (parse_color(elements[2], &sphere->color) == EXIT_FAILURE)
 		return (free(sphere), ERR_COLOR_FORMAT);
 	sphere->diameter = ft_xatof(elements[1]);
+	if (sphere->diameter == -1)
+		return (free(sphere), ERR_ATOF);
 	sphere->shape = SPHERE;
 	*sphere_ptr = sphere;
 	return (SUCCESS);

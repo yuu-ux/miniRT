@@ -42,6 +42,8 @@ static char	*get_error_message(int status)
 		return ("Normalized vector is required.");
 	else if (status == ERR_FOV_RANGE)
 		return ("Field of view is out of valid range.");
+	else if (status == ERR_ATOF)
+		return ("Failed atof");
 	return ("Unknown error occurred.");
 }
 

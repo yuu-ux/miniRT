@@ -29,6 +29,8 @@ int	parse_cylinder(char **elements, t_object **cylinder_ptr)
 		return (free(cylinder), ERR_NORMALIZE);
 	cylinder->diameter = ft_xatof(elements[2]);
 	cylinder->height = ft_xatof(elements[3]);
+	if (cylinder->diameter == -1 || cylinder->height == -1)
+		return (free(cylinder), ERR_ATOF);
 	if (parse_color(elements[4], &cylinder->color) == EXIT_FAILURE)
 		return (free(cylinder), ERR_COLOR_FORMAT);
 	cylinder->shape = CYLINDER;

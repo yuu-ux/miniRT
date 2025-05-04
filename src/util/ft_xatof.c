@@ -13,6 +13,8 @@
 #include <scene.h>
 #include <util.h>
 
+#define ERR_NUM -1
+
 static bool	is_conversion_float(char *s)
 {
 	int	dot_count;
@@ -40,7 +42,7 @@ double	ft_xatof(char *s)
 	double	res;
 
 	if (!is_conversion_float(s))
-		error_exit("atof convert error", EXIT_FAILURE, NULL);
+		return (ERR_NUM);
 	res = ft_atof(s);
 	return (res);
 }

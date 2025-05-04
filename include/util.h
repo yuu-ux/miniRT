@@ -12,7 +12,6 @@
 
 #ifndef UTIL_H
 # define UTIL_H
-# define INVALID_ERR_STATUS -1
 
 # include <mlx_util.h>
 

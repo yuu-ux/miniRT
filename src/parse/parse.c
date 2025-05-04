@@ -53,7 +53,7 @@ static int	parse_rt_line(char *line, t_scene *scene)
 	else if (ft_strncmp(elements[0], "//", 2) == 0)
 		status = SUCCESS;
 	else
-		status = FAILURE;
+		status = EXIT_FAILURE;
 	free_double_array(elements);
 	return (status);
 }
