@@ -39,6 +39,6 @@ int         parse_cylinder(char **elements, t_object **cylinder);
 int	count_array(char **array);
 int	parse_color(char *elements, t_color *color);
 int	parse_vector(char *elements, t_vec *vector);
-int	validate_normalize(t_vec vector);
+int	validate_and_set_vector(t_vec *vector);
 
 #endif
