@@ -38,10 +38,3 @@ int	close_window(void *mlx)
 	free_objects(_mlx->scene->objects);
 	exit(EXIT_SUCCESS);
 }
-
-int	main_loop(t_mlx *mlx)
-{
-	raytracing(mlx);
-	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img.img_ptr, 0, 0);
-	return (EXIT_SUCCESS);
-}
