@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 20:25:41 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/05/03 18:14:25 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/04 17:09:01 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,17 @@ t_vec	get_cylinder_normal(t_object *obj, t_vec hit_point)
 	t_vec	oc;
 	t_vec	projected;
 	t_vec	normal;
+	double	proj_len;
 
 	oc = subtract(hit_point, obj->center);
 	projected = scale(obj->normal, dot_product(oc, obj->normal));
-	normal = subtract(oc, projected);
+	proj_len = dot_product(oc, obj->normal);
+	if (fabs(proj_len - obj->height / 2.0) < 1e-4)
+		return (obj->normal);
+	if (fabs(proj_len + obj->height / 2.0) < 1e-4)
+		return (scale(obj->normal, -1.0));
+	else
+		normal = subtract(oc, projected);
 	return (normalize(normal));
 }
 // oc - projected is perpendicular to the axis of the cylinder
