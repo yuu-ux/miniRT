@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:21:04 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/05/05 16:40:04 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/03 18:02:38 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@ void	ft_pixel_put(int x, int y, t_img *img, int color)
 {
 	size_t	offset;
 
-	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
-		return ;
-	// x = WIDTH - x;
-	// y = HEIGHT - y;
 	offset = (y * img->line_length) + x * (img->bpp / 8);
 	*(unsigned int *)(img->addr + offset) = color;
 }
+// void	render_pixel(t_img *img, int x, int y, t_object *object)
+// {
+// 	if (object)
+// 		ft_pixel_put(x, y, img, convert_color(object->color));
+// 	else
+// 		ft_pixel_put(x, y, img, 0x000000);
+// }
 
 int	convert_color(t_color color)
 {

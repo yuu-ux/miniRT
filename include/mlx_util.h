@@ -43,5 +43,6 @@ typedef struct s_mlx
 
 int			key_event(int keycode, void *param);
 int			close_window(void *param);
+int			main_loop(t_mlx *mlx);
 
 #endif
