@@ -4,7 +4,6 @@ services:
     volumes:
       - .:/root/minirt
       - /tmp/.X11-unix:/tmp/.X11-unix
-    working_dir: /root/minirt
     tty: true
     stdin_open: true
     environment:

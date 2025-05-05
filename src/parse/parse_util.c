@@ -12,6 +12,7 @@
 
 #include <scene.h>
 #include <util.h>
+#include <parse.h>
 
 int	count_array(char **array)
 {
@@ -57,8 +58,7 @@ int	validate_and_set_vector(t_vec *vector)
 	if (magnitude < 1 - 1e-6 || magnitude > 1 + 1e-6)
 	{
 		ft_putstr_fd("The length is not normalized, \
-			so we will normalize the vector after parsing.",
-						STDERR_FILENO);
+			so we will normalize the vector after parsing.", STDERR_FILENO);
 		*vector = normalize(*vector);
 	}
 	return (EXIT_SUCCESS);
@@ -77,6 +77,8 @@ int	parse_vector(char *elements, t_vec *vector)
 	x = ft_xatof(vectors[0]);
 	y = ft_xatof(vectors[1]);
 	z = ft_xatof(vectors[2]);
+	if (x == ERR_ATOF_NUM || y == ERR_ATOF_NUM || z == ERR_ATOF_NUM)
+		return (free_double_array(vectors));
 	vector->x = x;
 	vector->y = y;
 	vector->z = z;

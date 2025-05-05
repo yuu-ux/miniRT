@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <mlx_util.h>
 #include <parse.h>
 #include <scene.h>
 #include <util.h>
@@ -41,15 +42,49 @@ static char	*get_error_message(int status)
 		return ("Normalized vector is required.");
 	else if (status == ERR_FOV_RANGE)
 		return ("Field of view is out of valid range.");
+	else if (status == ERR_ATOF)
+		return ("Failed atof");
 	return ("Unknown error occurred.");
 }
 
-int	error_exit(char *message, int status)
+int	error_exit(char *message, int status, t_mlx *mlx)
 {
-	if (status != INVALID_ERR_STATUS)
+	if (message == NULL)
 		message = get_error_message(status);
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(message, 2);
 	ft_putstr_fd("\n", 2);
+	if (mlx)
+	{
+		free_mlx(mlx);
+		if (mlx->scene)
+			free_objects(mlx->scene->objects);
+	}
 	exit(EXIT_FAILURE);
+}
+
+void	free_mlx(t_mlx *mlx)
+{
+	if (mlx->img.img_ptr)
+		mlx_destroy_image(mlx->mlx, mlx->img.img_ptr);
+	if (mlx->window)
+		mlx_destroy_window(mlx->mlx, mlx->window);
+	if (mlx->mlx)
+	{
+		mlx_destroy_display(mlx->mlx);
+		free(mlx->mlx);
+	}
+}
+
+void	free_objects(t_list *objects)
+{
+	t_list	*temp;
+
+	while (objects)
+	{
+		temp = objects->next;
+		free(objects->content);
+		free(objects);
+		objects = temp;
+	}
 }

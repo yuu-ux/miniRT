@@ -53,11 +53,12 @@ static int	parse_rt_line(char *line, t_scene *scene)
 	else if (ft_strncmp(elements[0], "//", 2) == 0)
 		status = SUCCESS;
 	else
-		status = FAILURE;
+		status = EXIT_FAILURE;
+	free_double_array(elements);
 	return (status);
 }
 
-int	parse_rt_file(const char *filename, t_scene *scene)
+int	parse_rt_file(const char *filename, t_scene *scene, t_mlx *mlx)
 {
 	int		fd;
 	char	*line;
@@ -70,12 +71,15 @@ int	parse_rt_file(const char *filename, t_scene *scene)
 		if (line == NULL)
 			break ;
 		line = ft_chomp(line);
-		if (ft_strlen(line) == 0)
+		if (*line == '\0')
+		{
+			free(line);
 			continue ;
+		}
 		status = parse_rt_line(line, scene);
-		if (status != SUCCESS)
-			error_exit(NULL, status);
 		free(line);
+		if (status != SUCCESS)
+			error_exit(NULL, status, mlx);
 	}
 	ft_xclose(fd);
 	return (SUCCESS);

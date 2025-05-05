@@ -47,18 +47,18 @@ int	main(int argc, char **argv)
 	t_mlx	mlx;
 
 	if (argc != 2)
-		return (error_exit("Usage: ./miniRT scene.rt\n", INVALID_ERR_STATUS));
+		return (error_exit("Usage: ./miniRT scene.rt\n", EXIT_FAILURE, NULL));
 	if (!is_rt_extensions(argv[1]))
-		return (error_exit("Invalid extensions", INVALID_ERR_STATUS));
+		return (error_exit("Invalid extensions", EXIT_FAILURE, NULL));
 	init_data(&scene, &mlx);
-	parse_rt_file(argv[1], &scene);
+	parse_rt_file(argv[1], &scene, &mlx);
 	setup_camera(&scene.camera, mlx.img.width, mlx.img.height);
-	mlx.scene = scene;
+	mlx.scene = &scene;
 	raytracing(&mlx);
 	mlx_put_image_to_window(mlx.mlx, mlx.window, mlx.img.img_ptr, 0, 0);
-	mlx_hook(mlx.window, 2, 1L << 0, key_event, NULL);
-	mlx_hook(mlx.window, 17, 1L << 17, close_window, NULL);
-	// mlx_loop_hook(mlx.mlx, &main_loop, &mlx);
+	mlx_hook(mlx.window, 2, 1L << 0, key_event, &mlx);
+	mlx_hook(mlx.window, 17, 1L << 17, close_window, &mlx);
+	mlx_loop_hook(mlx.mlx, &main_loop, &mlx);
 	mlx_loop(mlx.mlx);
 	return (0);
 }

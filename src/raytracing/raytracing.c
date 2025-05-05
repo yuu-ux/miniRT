@@ -86,18 +86,17 @@ static t_color	trace_pixel(t_mlx *mlx, int x, int y)
 	t_vec		hit_point;
 	double		t_closest;
 
-	ray_origin = mlx->scene.camera.position;
-	ray_dir = generate_ray_dir(&mlx->scene.camera, x, y, &mlx->img);
-	closest_obj = find_closest_object(&mlx->scene,
+	ray_origin = mlx->scene->camera.position;
+	ray_dir = generate_ray_dir(&mlx->scene->camera, x, y, &mlx->img);
+	closest_object = find_closest_object(mlx->scene,
 			ray_origin, ray_dir, &t_closest);
 	if (closest_obj)
 	{
 		hit_point = add(ray_origin, scale(ray_dir, t_closest));
-		if (is_in_shadow(hit_point, &mlx->scene.light, &mlx->scene))
-			return (scale_color(closest_obj->color,
-					mlx->scene.ambient.brightness));
+		if (is_in_shadow(hit_point, &mlx->scene->light, mlx->scene))
+			return (scale_color(closest_object->color, mlx->scene->ambient.brightness));
 		else
-			return (compute_phong(&mlx->scene, closest_obj, hit_point, ray_dir));
+			return (compute_phong(mlx->scene, closest_object, hit_point, ray_dir));
 	}
 	else
 		return ((t_color){0, 0, 0});
