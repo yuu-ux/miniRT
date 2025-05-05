@@ -24,6 +24,8 @@ int	parse_ambient(char **elements, t_ambient *ambient)
 	if (count_array(elements) != 2)
 		return (ERR_ARG_COUNT);
 	brightness = ft_xatof(elements[0]);
+	if (brightness == ERR_ATOF_NUM)
+		return (ERR_ATOF);
 	if (brightness < 0.0 || brightness > 1.0)
 		return (ERR_BRIGHTNESS_RANGE);
 	ambient->brightness = brightness;

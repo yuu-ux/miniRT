@@ -6,7 +6,7 @@
 #    By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 19:41:00 by yehara            #+#    #+#              #
-#    Updated: 2025/04/14 18:23:46 by yehara           ###   ########.fr        #
+#    Updated: 2025/05/03 16:45:37 by ssoeno           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,13 +23,22 @@ PARSE_SRCS = parse.c \
 			 parse_cylinder.c
 
 # raytracing
-RAYTRACING_SRCS = vector_utils.c
+RAYTRACING_SRCS = raytracing.c \
+				  vector_utils.c \
+				  vector_products.c \
+				  setup_camera.c \
+				  hit_object.c \
+				  render_utils.c \
+				  compute_phong.c \
+				  get_normal.c
 # util
 UTIL_SRCS = error.c \
 			ft_xatof.c
 # init
 INIT_SRCS = init.c
 
+# event
+EVENT_SRCS = event.c
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # srcs
@@ -37,7 +46,8 @@ SRCS = $(SRC_DIR)/main.c \
 	   $(addprefix $(SRC_DIR)/parse/, $(PARSE_SRCS)) \
 	   $(addprefix $(SRC_DIR)/util/, $(UTIL_SRCS)) \
 	   $(addprefix $(SRC_DIR)/raytracing/, $(RAYTRACING_SRCS)) \
-	   $(addprefix $(SRC_DIR)/init/, $(INIT_SRCS))
+	   $(addprefix $(SRC_DIR)/init/, $(INIT_SRCS)) \
+	   $(addprefix $(SRC_DIR)/event/, $(EVENT_SRCS))
 
 # libft
 LIBFT_DIR = ./libft

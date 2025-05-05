@@ -27,6 +27,8 @@ int	parse_light(char **elements, t_light *light)
 	if (parse_vector(elements[0], &light->position) == EXIT_FAILURE)
 		return (ERR_VECTOR_FORMAT);
 	brightness = ft_xatof(elements[1]);
+	if (brightness == ERR_ATOF_NUM)
+		return (ERR_ATOF);
 	if (brightness < 0.0 || brightness > 1.0)
 		return (ERR_BRIGHTNESS_RANGE);
 	light->brightness = brightness;

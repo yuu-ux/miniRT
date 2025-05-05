@@ -6,20 +6,21 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 22:01:25 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/04/02 22:40:03 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/03 17:55:22 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <scene.h>
 
-double dot_product(t_vec v1, t_vec v2)
+double	dot_product(t_vec v1, t_vec v2)
 {
 	double	result;
+
 	result = (v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z);
 	return (result);
 }
 
-t_vec cross_product(t_vec v1, t_vec v2)
+t_vec	cross_product(t_vec v1, t_vec v2)
 {
 	t_vec	result;
 
@@ -39,6 +40,3 @@ t_vec forward = normalize(camera.direction);
 t_vec right = normalize(cross_product(up, forward));
 t_vec up_corrected = cross_product(forward, right);
 */
-
-
-

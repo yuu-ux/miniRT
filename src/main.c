@@ -6,35 +6,19 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 17:01:34 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/04/14 19:04:20 by yehara           ###   ########.fr       */
+/*   Updated: 2025/05/01 17:49:47 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <init.h>
-#include <mlx_utils.h>
+#include <mlx_util.h>
 #include <parse.h>
+#include <raytracing.h>
 #include <scene.h>
 #include <util.h>
 
-#define KEY_ESC 65307
 #define MIN_FILE_LENGTH 4
 #define EXTENSIONS_NUM 3
-
-int	key_event(int keycode, void *param)
-{
-	(void)param;
-	if (keycode == KEY_ESC)
-	{
-		exit(0);
-	}
-	return (0);
-}
-
-int	close_window(void *param)
-{
-	(void)param;
-	exit(0);
-}
 
 void	put_pixel(t_img *img, int x, int y, int color)
 {
@@ -63,14 +47,18 @@ int	main(int argc, char **argv)
 	t_mlx	mlx;
 
 	if (argc != 2)
-		return (error_exit("Usage: ./miniRT scene.rt\n", INVALID_ERR_STATUS));
+		return (error_exit("Usage: ./miniRT scene.rt\n", EXIT_FAILURE, NULL));
 	if (!is_rt_extensions(argv[1]))
-		return (error_exit("Invalid extensions", INVALID_ERR_STATUS));
+		return (error_exit("Invalid extensions", EXIT_FAILURE, NULL));
 	init_data(&scene, &mlx);
-	parse_rt_file(argv[1], &scene);
+	parse_rt_file(argv[1], &scene, &mlx);
+	setup_camera(&scene.camera, mlx.img.width, mlx.img.height);
+	mlx.scene = &scene;
+	raytracing(&mlx);
 	mlx_put_image_to_window(mlx.mlx, mlx.window, mlx.img.img_ptr, 0, 0);
-	mlx_hook(mlx.window, 2, 1L << 0, key_event, NULL);
-	mlx_hook(mlx.window, 17, 1L << 17, close_window, NULL);
+	mlx_hook(mlx.window, 2, 1L << 0, key_event, &mlx);
+	mlx_hook(mlx.window, 17, 1L << 17, close_window, &mlx);
+	mlx_loop_hook(mlx.mlx, &main_loop, &mlx);
 	mlx_loop(mlx.mlx);
 	return (0);
 }

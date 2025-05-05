@@ -10,7 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx_utils.h>
-#include <scene.h>
+#ifndef INIT_H
+# define INIT_H
+
+# include <mlx_util.h>
+# include <scene.h>
 
 void	init_data(t_scene *scene, t_mlx *mlx);
+
+#endif
