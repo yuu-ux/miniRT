@@ -65,6 +65,8 @@ int	error_exit(char *message, int status, t_mlx *mlx)
 
 void	free_mlx(t_mlx *mlx)
 {
+	if (mlx->img.img_ptr)
+		mlx_destroy_image(mlx->mlx, mlx->img.img_ptr);
 	if (mlx->window)
 		mlx_destroy_window(mlx->mlx, mlx->window);
 	if (mlx->mlx)
