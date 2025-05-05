@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yehara <yehara@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 19:52:27 by yehara            #+#    #+#             */
-/*   Updated: 2025/04/15 20:09:43 by yehara           ###   ########.fr       */
+/*   Updated: 2025/05/05 14:09:03 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <scene.h>
+#include <stdlib.h>
 #include <mlx_util.h>
 #include <raytracing.h>
 

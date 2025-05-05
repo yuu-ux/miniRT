@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:07:47 by yehara            #+#    #+#             */
-/*   Updated: 2025/05/04 17:13:17 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/05 16:14:22 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,13 +115,8 @@ void	raytracing(t_mlx *mlx)
 		x = 0;
 		while (x < mlx->img.width)
 		{
-			x = 0;
-			while (x < mlx->img.width)
-			{
-				color = trace_pixel(mlx, x, y);
-				ft_pixel_put(x, y, &mlx->img, convert_color(color));
-				x++;
-			}
+			color = trace_pixel(mlx, x, y);
+			ft_pixel_put(x, y, &mlx->img, convert_color(color));
 			x++;
 		}
 		y++;
