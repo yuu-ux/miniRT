@@ -15,14 +15,23 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          sparse_checkout: |
+            libft
+            src
+            include
+            Makefile
+          sparse_checkout_cone_mode: true
 
       - name: Install norminette
         run: |
           sudo apt update
           sudo apt install python3-setuptools
           sudo apt install pipx
-          pipx install norminette
+          pipx install 'norminette==3.3.55'
           pipx ensurepath
 
       - name: Check norminette
-        run: norminette
+        run: norminette include src libft
+
