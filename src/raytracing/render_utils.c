@@ -20,8 +20,6 @@ void	ft_pixel_put(int x, int y, t_img *img, int color)
 
 	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
 		return ;
-	// x = WIDTH - x;
-	// y = HEIGHT - y;
 	offset = (y * img->line_length) + x * (img->bpp / 8);
 	*(unsigned int *)(img->addr + offset) = color;
 }

@@ -63,8 +63,6 @@ double			solve_quadratic(t_quadratic q);
 // raytracing.c
 t_vec			generate_ray_dir(t_camera *cam, int x, int y, t_img *img);
 void			raytracing(t_mlx *mlx);
-t_vec			generate_ray_direction(t_camera *cam, int x, int y, int width,
-					int height);
 t_object		*find_closest_object(t_scene *scene, t_vec ray_origin,
 					t_vec ray_dir, double *t_closest);
 
