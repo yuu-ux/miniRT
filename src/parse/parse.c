@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 21:21:03 by yehara            #+#    #+#             */
-/*   Updated: 2025/05/01 17:50:36 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/06 15:24:49 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ static int	parse_rt_line(char *line, t_scene *scene)
 	int		status;
 
 	status = 0;
-	elements = ft_xsplit(line, ' ');
+	elements = split_space(line);
+	if (elements == NULL)
+		return (EXIT_FAILURE);
 	if (ft_strncmp(elements[0], "A", 1) == 0)
 		status = parse_ambient(elements + 1, &scene->ambient);
 	else if (ft_strncmp(elements[0], "C", 1) == 0)
