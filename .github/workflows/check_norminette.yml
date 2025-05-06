@@ -33,4 +33,4 @@ jobs:
           pipx ensurepath
 
       - name: Check norminette
-        run: norminette
+        run: norminette include src libft
