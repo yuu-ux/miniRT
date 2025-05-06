@@ -1,6 +1,9 @@
 name: check_norminette
 run-name: ${{ github.actor }} is checking norminette
 on:
+  push:
+    branches:
+      - '**'  # 全ブランチ対象。特定ブランチだけにしたい場合は例: main や develop などにする
   pull_request:
     types:
       - opened
