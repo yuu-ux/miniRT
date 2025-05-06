@@ -6,7 +6,7 @@
 #    By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 19:41:00 by yehara            #+#    #+#              #
-#    Updated: 2025/05/04 16:14:23 by ssoeno           ###   ########.fr        #
+#    Updated: 2025/05/06 15:24:04 by yehara           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ RAYTRACING_SRCS = raytracing.c \
 				  hit_cylinder.c
 # util
 UTIL_SRCS = error.c \
-			ft_xatof.c
+			ft_xatof.c \
+			split_space.c
 # init
 INIT_SRCS = init.c
 
