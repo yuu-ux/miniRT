@@ -51,7 +51,7 @@ static size_t	word_len(char const *s)
 static void	*allocate_buf(char **buf, int len, int i)
 {
 	buf[i] = (char *)malloc((len + 1) * sizeof(char));
-	if (buf == NULL)
+	if (buf[i] == NULL)
 	{
 		i--;
 		while (0 <= i)
@@ -94,6 +94,7 @@ char	**split_space(char const *s)
 {
 	size_t	words;
 	char	**buf;
+	char	**result;
 
 	words = 0;
 	if (s == NULL)
@@ -102,11 +103,11 @@ char	**split_space(char const *s)
 	buf = (char **)malloc((words + 1) * sizeof(char *));
 	if (buf == NULL)
 		return (NULL);
-	buf = split_string(buf, s);
-	if (buf == NULL)
+	result = split_string(buf, s);
+	if (result == NULL)
 	{
 		free(buf);
 		return (NULL);
 	}
-	return (buf);
+	return (result);
 }
