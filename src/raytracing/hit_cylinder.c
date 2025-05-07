@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 12:52:08 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/05/04 17:54:01 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/05/06 15:50:09 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,17 @@
 double	hit_disk(t_object *obj, t_vec center, t_vec origin, t_vec dir)
 {
 	double	t;
+	double	denominator;
+	t_vec	diff;
 	t_vec	hit_point;
 
-	t = hit_plane(center, obj->normal, origin, dir);
-	if (t < 0)
-		return (t);
+	denominator = dot_product(obj->normal, dir);
+	if (fabs(denominator) < 1e-6)
+		return (-1.0);
+	diff = subtract(center, origin);
+	t = dot_product(obj->normal, diff) / denominator;
+	if (t < 1e-4)
+		return (-1.0);
 	hit_point = add(origin, scale(dir, t));
 	if (length(subtract(hit_point, center)) > obj->diameter / 2)
 		return (-1.0);
