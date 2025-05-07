@@ -1,0 +1,11 @@
+a.out
+libft_test/
+libftTester/
+unit_test/
+test.sh
+libft.h.gch
+
+
+objs/
+*.a
+*.o
